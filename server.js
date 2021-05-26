@@ -14,9 +14,7 @@ app.get ('/test', (req, res) => {
     res.redirect ('/tour')
 })
 
-app.get ('/tour', (req, res) => {
-    res.send('Hello there.')
-})
+app.use ('/tour', express.static ('public'))
 
 app.listen (port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
