@@ -1,6 +1,66 @@
+:root {
+    --navbox-width: 191px;
+    --navbox-bg-color: rgb(13,43,74);
+    --navbox-title-text-color: rgb(155,195,58);
+    --navbox-button-text-color: rgb(255,255,255);
+    --navbox-button-highlight-color: rgb(0, 186, 233);
+}
+
 html, body {
     margin: 0;
+    padding: 0;
     height: 100%;
+    background-color: black;
+}
+
+.navbox-container {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 11%;
+
+    width: auto;
+    background-color: var(--navbox-bg-color);
+    padding: 0;
+
+    border-bottom: 1px solid;
+    border-color: var(--navbox-button-highlight-color);
+
+}
+
+.navbox-topper {
+    display: block;
+    width: var(--navbox-width);
+}
+
+.navbox-topper img {
+    display: block;
+    width: 100%;
+}
+
+.navbox-button {
+    display: block;
+    width: var(--navbox-width);
+    height: 100%;
+
+    color: var(--navbox-button-text-color);
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 0.95em;
+    padding: 7px 0;
+    text-decoration: none;
+
+    background-color: var(--navbox-bg-color);
+    cursor: pointer;
+
+    border: none;
+    border-top: 1px solid;
+    border-color: var(--navbox-button-highlight-color);
+}
+
+.navbox-button:hover {
+    background-color: var(--navbox-button-highlight-color);
 }
 
 #c {
@@ -8,4 +68,5 @@ html, body {
     height: 100%;
     display: block;
 }
+
   
