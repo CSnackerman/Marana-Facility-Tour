@@ -17,5 +17,5 @@ app.get ('/test', (req, res) => {
 app.use ('/tour', express.static ('public'))
 
 app.listen (port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Tour app running on -> http://localhost:${port}`)
 })
