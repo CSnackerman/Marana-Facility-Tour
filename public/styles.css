@@ -1,4 +1,8 @@
+/* VARIABLES */
 :root {
+    /* --main-bg-color: rgb(255, 255, 255); */
+    --main-bg-color: rgb(0, 0, 0);
+    
     --navbox-width: 191px;
     --navbox-bg-color: rgb(13,43,74);
     --navbox-title-text-color: rgb(155,195,58);
@@ -6,13 +10,17 @@
     --navbox-button-highlight-color: rgb(0, 186, 233);
 }
 
+
+/* RESET */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: black;
+    background-color: var(--main-bg-color);
 }
 
+
+/* NAVBOX */
 .navbox-container {
     position: fixed;
     display: block;
@@ -61,6 +69,15 @@ html, body {
 
 .navbox-button:hover {
     background-color: var(--navbox-button-highlight-color);
+}
+
+
+/* VIDEO PLAYER */
+#video_player {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 #c {
