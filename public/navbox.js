@@ -1,3 +1,5 @@
+import { showVideoPlayer } from "./videoplayer.js";
+
 // button handles
 const overview_button = document.getElementById('overview_button');
 const howitwasbuilt_button = document.getElementById('howitwasbuilt_button');
@@ -8,34 +10,51 @@ const plantselection_button = document.getElementById('plantselection_button');
 const pollination_button = document.getElementById('pollination_button');
 const tour360_button = document.getElementById('tour360_button');
 
-overview_button.addEventListener('click', (event) => {
-    console.log ("clicked 'OVERVIEW' button")
+
+// event listeners
+overview_button.addEventListener('click', () => {
+    console.log ("clicked 'OVERVIEW' button");
+    showVideoPlayer();
 })
 
-howitwasbuilt_button.addEventListener('click', (event) => {
-    console.log ("clicked 'HOW IT WAS BUILT' button")
+
+howitwasbuilt_button.addEventListener('click', () => {
+    console.log ("clicked 'HOW IT WAS BUILT' button");
+    showVideoPlayer();
 })
 
-chipping_button.addEventListener('click', (event) => {
-    console.log ("clicked 'CHIPPING' button")
+
+chipping_button.addEventListener('click', () => {
+    console.log ("clicked 'CHIPPING' button");
+    showVideoPlayer();
 })
 
-seeding_button.addEventListener('click', (event) => {
-    console.log ("clicked 'SEEDING' button")
+
+seeding_button.addEventListener('click', () => {
+    console.log ("clicked 'SEEDING' button");
+    showVideoPlayer();
 })
 
-germination_button.addEventListener('click', (event) => {
-    console.log ("clicked 'GERMINATION' button")
+
+germination_button.addEventListener('click', () => {
+    console.log ("clicked 'GERMINATION' button");
+    showVideoPlayer();
 })
 
-plantselection_button.addEventListener('click', (event) => {
-    console.log ("clicked 'PLANT SELECTION' button")
+
+plantselection_button.addEventListener('click', () => {
+    console.log ("clicked 'PLANT SELECTION' button");
+    showVideoPlayer();
 })
 
-pollination_button.addEventListener('click', (event) => {
-    console.log ("clicked 'POLLINATION' button")
+
+pollination_button.addEventListener('click', () => {
+    console.log ("clicked 'POLLINATION' button");
+    showVideoPlayer();
 })
 
-tour360_button.addEventListener('click', (event) => {
-    console.log ("clicked '360 TOUR' button")
+
+tour360_button.addEventListener('click', () => {
+    console.log ("clicked '360 TOUR' button");
+    showVideoPlayer();
 })
