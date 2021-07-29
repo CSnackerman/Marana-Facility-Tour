@@ -16,7 +16,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: var(--main-bg-color);
+    background-color: var(--main-bg-color); 
 }
 
 
@@ -71,6 +71,29 @@ html, body {
     background-color: var(--navbox-button-highlight-color);
 }
 
+/* LOGO FOOTER */
+.logo-button {
+    display: block;
+    position: fixed;
+
+    width: 242px;
+    height: 69px;
+    
+    bottom: 3px;    
+    right: 10%;
+
+    margin: 5px 0;
+
+    cursor: pointer;
+    
+    background-color: transparent;
+
+    background-image: url('./images/footer.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+}
+
 
 /* VIDEO PLAYER */
 #video_player {
@@ -81,9 +104,16 @@ html, body {
 }
 
 #c {
-    width: 100%;
-    height: 100%;
     display: block;
+    margin: 0;
+    padding: 0;
+
+    width: 100vw;
+    height: 100vh;
+    
+    overflow: hidden;
+
+    /* border: solid red 1px; */
 }
 
   
