@@ -52,10 +52,11 @@ html, body {
     height: 100%;
 
     color: var(--navbox-button-text-color);
+    white-space: nowrap;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: 0.95em;
+    font-size: 11pt;
     padding: 7px 0;
     text-decoration: none;
 
