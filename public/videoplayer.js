@@ -12,7 +12,7 @@ const video_player = document.createElement('div');
 video_container.appendChild(video_player);
 
 // style container
-video_container.style.backgroundColor = 'white';
+video_container.style.backgroundColor = 'black';
 video_container.style.opacity = PLAYER_BG_OPACITY;
 
 // style player
@@ -24,7 +24,7 @@ video_player.style.left = PLAYER_LEFT;
 video_player.style.width = PLAYER_WIDTH;
 video_player.style.height = PLAYER_HEIGHT;
 
-video_player.style.backgroundColor = 'black';
+video_player.style.backgroundColor = 'gray';
 
 
 
