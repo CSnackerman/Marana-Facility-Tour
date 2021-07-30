@@ -104,3 +104,4 @@ export {WIDTH, HEIGHT};
 export { PLAYER_BG_OPACITY }
 export { PLAYER_WIDTH, PLAYER_HEIGHT }
 export { PLAYER_TOP, PLAYER_LEFT }
+export { R_MODE }
