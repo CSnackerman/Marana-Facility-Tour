@@ -11,6 +11,7 @@
 }
 
 
+
 /* RESET */
 html, body {
     margin: 0;
@@ -19,9 +20,14 @@ html, body {
     background-color: var(--main-bg-color); 
 }
 
+
+
+/* don't display because of frontloader */
 #birds_eye {
     display:none;
 }
+
+
 
 /* WELCOMER */
 #welcome_bg {
@@ -38,6 +44,7 @@ html, body {
     z-index: 100;
 }
 
+
 #welcome_image {
     display: block;
     position: fixed; 
@@ -51,10 +58,10 @@ html, body {
 
     z-index: 101;
 }
-
 #welcome_image::selection {
     background-color: transparent;
 }
+
 
 #begin_button {
     display: block;
@@ -81,7 +88,6 @@ html, body {
 
     z-index: 101;
 }
-
 #begin_button:hover {
     background-image: url('./images/begin-hover.png');
 }
@@ -105,16 +111,19 @@ html, body {
 
 }
 
+
+
 .navbox-topper {
     display: block;
     width: var(--navbox-width);
 
     z-index: 99;
 }
-
 .navbox-topper::selection {
     background-color: transparent;
 }
+
+
 
 .navbox-topper img {
     display: block;
@@ -122,10 +131,11 @@ html, body {
 
     z-index: 99;
 }
-
 .navbox-topper img::selection {
     background-color: transparent;
 }
+
+
 
 .navbox-button {
     display: block;
@@ -150,14 +160,14 @@ html, body {
 
     z-index: 99;
 }
-
 .navbox-button::selection {
     background-color: transparent;
 }
-
 .navbox-button:hover {
     background-color: var(--navbox-button-highlight-color);
 }
+
+
 
 /* LOGO FOOTER */
 .logo-button {
@@ -183,11 +193,12 @@ html, body {
 }
 
 
-/* VIDEO PLAYER */
 
+/* VIDEO PLAYER */
 #video_container {
     z-index: 200;
 }
+
 
 #video_player {
     margin: 0;
@@ -198,6 +209,9 @@ html, body {
     z-index: 200;
 }
 
+
+
+/* CANVAS */
 #c {
     display: block;
     margin: 0;
