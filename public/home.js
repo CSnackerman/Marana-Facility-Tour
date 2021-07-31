@@ -1,12 +1,15 @@
 import { WIDTH, HEIGHT } from "./config.js";
 import { R_MODE } from "./config.js";
 
+import { CircleButton2D } from "./CircleButton2D.js";
+
+import { showVideoPlayer } from "./videoplayer.js";
+
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
 
 // background image
-const birds_eye = new Image();
-birds_eye.src = './images/marana_birds_eye.png';
+var birds_eye = document.getElementById('birds_eye');
 var bg_width = 1920;
 var bg_x = -(bg_width - WIDTH) / 2;
 var bg_start_x = 0;
@@ -15,6 +18,14 @@ var bg_start_x = 0;
 if (WIDTH > 1920) {
   bg_width = WIDTH;
 }
+
+
+// Circle Buttons
+var howBuiltButton = new CircleButton2D();
+var whatDoButton = new CircleButton2D();
+
+howBuiltButton.initHowBuilt();
+whatDoButton.initWhatDo();
 
 
 // control variables
@@ -76,6 +87,7 @@ canvas.addEventListener('mouseup', (e) => {
 });
 
 
+// prevent over-scrolling
 function clampBackground() {
 
   if (bg_x > 0) {
@@ -89,7 +101,7 @@ function clampBackground() {
 }
 
 
-// render loop
+// render loop function
 function home() {
 
   ctx.canvas.width = window.innerWidth;
@@ -99,7 +111,23 @@ function home() {
 
   ctx.drawImage(birds_eye, bg_x, 0, bg_width, HEIGHT);
 
+  howBuiltButton.draw(ctx);
+  whatDoButton.draw(ctx);
+
   requestAnimationFrame(home);
 }
+
+
+// run
+
+let interval = CircleButton2D.anim_speed;
+
+setInterval ( () => {
+
+  CircleButton2D.advanceFrame();
+  howBuiltButton.animate();
+  whatDoButton.animate();
+
+}, interval);
 
 home();
