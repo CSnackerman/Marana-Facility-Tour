@@ -29,7 +29,7 @@ function initWelcomer() {
     if (R_MODE === 'mobile') {
 
         // welcome image
-        welcome_img_width = WIDTH - 5;
+        welcome_img_width = WIDTH - 25;
         welcome_img_height = Math.floor (welcome_img_width / welcome_img_aspect);
 
         welcome_img_top = Math.floor(HEIGHT * .44 - welcome_img_height / 2);
