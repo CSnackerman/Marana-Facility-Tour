@@ -9,6 +9,12 @@ export class CircleButton2D {
         this.y = 0;
         this.sz = 125;
 
+        this.tempx = 0;
+        this.tempy = 0;
+
+        this.start_offset_x = 0;
+        this.start_offset_y = 0;
+
         this.spritesheet = new Image();
         this.spritesheet.src = './images/videoicon-anim.png';
 
@@ -81,6 +87,21 @@ export class CircleButton2D {
         }
         
         // console.log (this);
+    }
+
+    setPosition(new_x, new_y) {
+        this.x = new_x;
+        this.y = new_y;
+    }
+
+    saveTemp() {
+        this.tempx = this.x;
+        this.tempy = this.y;
+    }
+
+    // for clamping
+    setInitialBackgroundOffset(bgx) {
+        this.start_offset_x = this.x - bgx;
     }
 
     draw (context) {

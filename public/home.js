@@ -12,7 +12,7 @@ const ctx = canvas.getContext('2d');
 var birds_eye = document.getElementById('birds_eye');
 var bg_width = 1920;
 var bg_x = -(bg_width - WIDTH) / 2;
-var bg_start_x = 0;
+var temp_bg_x = 0;
 
 // stretch bg if necessary
 if (WIDTH > 1920) {
@@ -26,6 +26,10 @@ var whatDoButton = new CircleButton2D();
 
 howBuiltButton.initHowBuilt();
 whatDoButton.initWhatDo();
+
+// for clamping when panning
+howBuiltButton.setInitialBackgroundOffset (bg_x);
+whatDoButton.setInitialBackgroundOffset (bg_x);
 
 
 // control variables
@@ -41,14 +45,36 @@ canvas.addEventListener('touchstart', (e) => {
 
   panning = true;
   pointer_start_x = e.touches[0].clientX;
-  bg_start_x = bg_x;
+
+  // background
+  temp_bg_x = bg_x;
+
+  // buttons
+  howBuiltButton.saveTemp();
+  whatDoButton.saveTemp();
+
 });
 
 canvas.addEventListener('touchmove', (e) => {
 
   if (panning === true) {
     pointer_x = e.touches[0].clientX;
-    bg_x = bg_start_x - (pointer_start_x - pointer_x) * dampener;
+
+    // bg
+    bg_x = temp_bg_x - (pointer_start_x - pointer_x) * dampener;
+
+
+    // buttons
+    howBuiltButton.setPosition (
+      howBuiltButton.tempx - (pointer_start_x - pointer_x) * dampener,
+      howBuiltButton.y
+    );
+
+    whatDoButton.setPosition (
+      whatDoButton.tempx - (pointer_start_x - pointer_x) * dampener,
+      whatDoButton.y
+    );
+
   }
 });
 
@@ -64,17 +90,36 @@ canvas.addEventListener('touchend', (e) => {
 
 // mouse event listeners
 canvas.addEventListener('mousedown', (e) => {
-
-  pointer_start_x = e.offsetX;
-  bg_start_x = bg_x
+  
   panning = true;
+  pointer_start_x = e.offsetX;
+  
+  //bg
+  temp_bg_x = bg_x
+
+  // buttons
+  howBuiltButton.saveTemp();
+  whatDoButton.saveTemp();
 });
 
 canvas.addEventListener('mousemove', (e) => {
 
   if (panning === true) {
     pointer_x = e.offsetX;
-    bg_x = bg_start_x - (pointer_start_x - pointer_x) * dampener;
+
+    //bg
+    bg_x = temp_bg_x - (pointer_start_x - pointer_x) * dampener;
+
+    // buttons
+    howBuiltButton.setPosition (
+      howBuiltButton.tempx - (pointer_start_x - pointer_x) * dampener,
+      howBuiltButton.y
+    );
+
+    whatDoButton.setPosition (
+      whatDoButton.tempx - (pointer_start_x - pointer_x) * dampener,
+      whatDoButton.y
+    );
   }
 });
 
@@ -88,14 +133,36 @@ canvas.addEventListener('mouseup', (e) => {
 
 
 // prevent over-scrolling
-function clampBackground() {
+function clamp() {
 
   if (bg_x > 0) {
+
     bg_x = 0;
+
+    whatDoButton.setPosition (
+      whatDoButton.start_offset_x, 
+      whatDoButton.y
+    );
+
+    howBuiltButton.setPosition (
+      howBuiltButton.start_offset_x,
+      howBuiltButton.y
+    );
   }
 
   if (bg_x + bg_width < WIDTH) {
+
     bg_x = -(bg_width - WIDTH);
+
+    whatDoButton.setPosition (
+      whatDoButton.start_offset_x -(bg_width - WIDTH), 
+      whatDoButton.y
+    );
+
+    howBuiltButton.setPosition (
+      howBuiltButton.start_offset_x -(bg_width - WIDTH), 
+      howBuiltButton.y
+    );
   }
 
 }
@@ -107,7 +174,7 @@ function home() {
   ctx.canvas.width = window.innerWidth;
   ctx.canvas.height = window.innerHeight;
 
-  clampBackground();
+  clamp();
 
   ctx.drawImage(birds_eye, bg_x, 0, bg_width, HEIGHT);
 
