@@ -12,8 +12,17 @@ export class CircleButton2D {
         this.spritesheet = new Image();
         this.spritesheet.src = './images/videoicon-anim.png';
 
-        this.cssFont = 'bold 11pt Verdana, Geneva, Tahoma, sans-serif';
-        this.textVal = 'default';
+        this.cssFont = 'bold 10pt Verdana, Geneva, Tahoma, sans-serif';
+        this.textVal1 = 'T1';
+        this.textVal2 = 'T2';
+        
+        this.text1_x = 0;
+        this.text1_y = 0;
+        this.text1_w = 0;
+
+        this.text2_x = 0;
+        this.text2_y = 0;
+        this.text2_w = 0;
 
         this.s_x = 0;
         this.s_y = 0;
@@ -30,22 +39,28 @@ export class CircleButton2D {
 
     initHowBuilt() {
 
-        this.textVal = 'HOW IT WAS BUILT';
+        this.textVal1 = 'HOW IT    ';
+        this.textVal2 = 'WAS BUILT     ';
 
         if (R_MODE === 'desktop' || R_MODE === 'tablet' || R_MODE === 'mobile') {
             this.x = WIDTH / 2 - this.sz / 2;
             this.y = HEIGHT / 2 - this.sz / 2;
         }   
+
+        console.log (this)
     }
 
     initWhatDo() {
 
-        this.textVal = 'WHAT WE DO HERE';
+        this.textVal1 = 'WHAT WE';
+        this.textVal2 = 'DO HERE';
 
         if (R_MODE === 'desktop' || R_MODE === 'tablet'     || R_MODE === 'mobile') {
             this.x = WIDTH * 0.71 - this.sz / 2;
             this.y = HEIGHT * 0.25 - this.sz / 2;
         }
+
+        console.log (this)
     }
 
 // -----
@@ -70,6 +85,7 @@ export class CircleButton2D {
 
     draw (context) {
 
+        // circle
         context.drawImage (
             this.spritesheet, 
             this.s_x,
@@ -81,12 +97,20 @@ export class CircleButton2D {
             this.sz,
             this.sz
         );
+        
+        // text
+        this.text1_w = context.measureText (this.textVal1).width;
+        this.text1_x = this.x + this.sz / 2 - this.text1_w / 2;
+        this.text1_y = this.y + this.sz / 2 - 5;
+
+        this.text2_w = context.measureText (this.textVal2).width;
+        this.text2_x = this.x + this.sz / 2 - this.text2_w / 2;
+        this.text2_y = this.y + this.sz / 2 + 11;
 
         context.font = this.cssFont;
         context.fillStyle = 'white';
-        let text_dimens = context.measureText (this.textVal)
-        let text_x = this.x + this.sz * 0.05;
-        let text_y = this.y + this.sz / 2;
-        context.fillText(this.textVal, text_x, text_y);
+
+        context.fillText(this.textVal1, this.text1_x, this.text1_y);
+        context.fillText(this.textVal2, this.text2_x, this.text2_y);
     }
 }
