@@ -5,7 +5,6 @@ import { R_MODE } from "./config.js";
 // navbox container
 const navbox_container = document.getElementById ('navbox_container');
 
-
 // topper
 const navbox_topper = document.getElementById('navbox_topper');
 
@@ -40,14 +39,14 @@ function initNavbox() {
             button.style.fontSize = '7pt';
             button.style.padding = '4px';
             // console.log(button);
-        })
+        });
 
         logo_button.style.right = 0;
         logo_button.style.width = '40%';
         logo_button.style.height = '5%';
         logo_button.style.margin = 0;
         logo_button.style.marginRight = '-25px';
-        console.log (logo_button);
+        // console.log (logo_button);
     }
 }
 
