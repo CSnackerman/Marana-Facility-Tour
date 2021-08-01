@@ -8,6 +8,9 @@ import { showVideoPlayer } from "./videoplayer.js";
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
 
+// canvas settings
+canvas.style.letterSpacing = '1px';
+
 // background image
 var birds_eye = document.getElementById('birds_eye');
 var bg_width = 1920;
@@ -36,7 +39,7 @@ whatDoButton.setInitialBackgroundOffset (bg_x);
 var panning = false;
 var pointer_start_x = 0;
 var pointer_x = 0;
-const dampener = 0.7
+const dampener = 1
 
 
 

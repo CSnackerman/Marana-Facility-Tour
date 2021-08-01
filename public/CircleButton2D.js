@@ -18,7 +18,7 @@ export class CircleButton2D {
         this.spritesheet = new Image();
         this.spritesheet.src = './images/videoicon-anim.png';
 
-        this.cssFont = 'bold 10pt Verdana, Geneva, Tahoma, sans-serif';
+        this.cssFont ='bold 8pt Roboto-Bold';
         this.textVal1 = 'T1';
         this.textVal2 = 'T2';
         
@@ -45,8 +45,8 @@ export class CircleButton2D {
 
     initHowBuilt() {
 
-        this.textVal1 = 'HOW IT    ';
-        this.textVal2 = 'WAS BUILT     ';
+        this.textVal1 = 'HOW IT';
+        this.textVal2 = 'WAS BUILT';
 
         if (R_MODE === 'desktop' || R_MODE === 'tablet' || R_MODE === 'mobile') {
             this.x = WIDTH / 2 - this.sz / 2;
