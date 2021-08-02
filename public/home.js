@@ -66,6 +66,7 @@ canvas.addEventListener('touchstart', (e) => {
 canvas.addEventListener('touchmove', (e) => {
 
   if (panning === true) {
+
     pointer_x = e.touches[0].clientX;
 
     // bg
@@ -87,7 +88,6 @@ canvas.addEventListener('touchmove', (e) => {
       whatDoButton.tempx - (pointer_start_x - pointer_x) * dampener,
       whatDoButton.y
     );
-
   }
 });
 
@@ -119,6 +119,7 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mousemove', (e) => {
 
   if (panning === true) {
+    
     pointer_x = e.offsetX;
 
     //bg
@@ -139,6 +140,15 @@ canvas.addEventListener('mousemove', (e) => {
       whatDoButton.tempx - (pointer_start_x - pointer_x) * dampener,
       whatDoButton.y
     );
+  }
+
+  // button hovers
+  if (howBuiltButton.collidePointer(e.clientX, e.clientY) ) {
+    howBuiltButton.onHover();
+  }
+
+  if (whatDoButton.collidePointer(e.clientX, e.clientY) ) {
+    whatDoButton.onHover();
   }
 });
 
