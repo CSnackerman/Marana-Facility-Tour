@@ -10,6 +10,15 @@
     --navbox-button-highlight-color: rgb(0, 186, 233);
 }
 
+@font-face {
+    font-family: Roboto-Bold;
+    src: url('./fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: Lobster;
+    src: url('./fonts/Lobster-Regular.ttf');
+}
 
 
 /* RESET */
@@ -135,10 +144,6 @@ html, body {
     background-color: transparent;
 }
 
-@font-face {
-    font-family: Roboto-Bold;
-    src: url('./fonts/Roboto-Bold.ttf');
-}
 
 .navbox-button {
     display: block;
@@ -181,7 +186,7 @@ html, body {
     width: 242px;
     height: 69px;
     
-    bottom: 3px;    
+    bottom: 3px;
     right: 10%;
 
     margin: 5px 0;

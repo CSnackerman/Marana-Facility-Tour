@@ -4,17 +4,18 @@ import { R_MODE } from "./config.js";
 import { CircleButton2D } from "./CircleButton2D.js";
 
 import { showVideoPlayer } from "./videoplayer.js";
+import { StartButton } from "./StartButton.js";
 
+// boilerplate
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
-
-// canvas settings
-canvas.style.letterSpacing = '1px';
 
 // background image
 var birds_eye = document.getElementById('birds_eye');
 var bg_width = 1920;
+var bg_height = HEIGHT;
 var bg_x = -(bg_width - WIDTH) / 2;
+var bg_y = 0;
 var temp_bg_x = 0;
 
 // stretch bg if necessary
@@ -22,17 +23,20 @@ if (WIDTH > 1920) {
   bg_width = WIDTH;
 }
 
+// Start Button
+var startButton = new StartButton();
+startButton.init(bg_width, bg_height);
+startButton.setInitialBackgroundOffset(bg_x);
+
 
 // Circle Buttons
 var howBuiltButton = new CircleButton2D();
+    howBuiltButton.initHowBuilt(bg_width, bg_height);
+    howBuiltButton.setInitialBackgroundOffset (bg_x);
+
 var whatDoButton = new CircleButton2D();
-
-howBuiltButton.initHowBuilt();
-whatDoButton.initWhatDo();
-
-// for clamping when panning
-howBuiltButton.setInitialBackgroundOffset (bg_x);
-whatDoButton.setInitialBackgroundOffset (bg_x);
+    whatDoButton.initWhatDo(bg_width, bg_height);
+    whatDoButton.setInitialBackgroundOffset (bg_x);
 
 
 // control variables
@@ -53,6 +57,7 @@ canvas.addEventListener('touchstart', (e) => {
   temp_bg_x = bg_x;
 
   // buttons
+  startButton.saveTemp();
   howBuiltButton.saveTemp();
   whatDoButton.saveTemp();
 
@@ -68,6 +73,11 @@ canvas.addEventListener('touchmove', (e) => {
 
 
     // buttons
+    startButton.setPosition (
+      startButton.tempx - (pointer_start_x - pointer_x) * dampener,
+      startButton.y
+    );
+
     howBuiltButton.setPosition (
       howBuiltButton.tempx - (pointer_start_x - pointer_x) * dampener,
       howBuiltButton.y
@@ -101,6 +111,7 @@ canvas.addEventListener('mousedown', (e) => {
   temp_bg_x = bg_x
 
   // buttons
+  startButton.saveTemp();
   howBuiltButton.saveTemp();
   whatDoButton.saveTemp();
 });
@@ -114,6 +125,11 @@ canvas.addEventListener('mousemove', (e) => {
     bg_x = temp_bg_x - (pointer_start_x - pointer_x) * dampener;
 
     // buttons
+    startButton.setPosition (
+      startButton.tempx - (pointer_start_x - pointer_x) * dampener,
+      startButton.y
+    );
+
     howBuiltButton.setPosition (
       howBuiltButton.tempx - (pointer_start_x - pointer_x) * dampener,
       howBuiltButton.y
@@ -142,6 +158,11 @@ function clamp() {
 
     bg_x = 0;
 
+    startButton.setPosition (
+      startButton.start_offset_x,
+      startButton.y
+    );
+
     whatDoButton.setPosition (
       whatDoButton.start_offset_x, 
       whatDoButton.y
@@ -157,13 +178,18 @@ function clamp() {
 
     bg_x = -(bg_width - WIDTH);
 
+    startButton.setPosition (
+      startButton.start_offset_x - (bg_width - WIDTH),
+      startButton.y
+    );
+
     whatDoButton.setPosition (
-      whatDoButton.start_offset_x -(bg_width - WIDTH), 
+      whatDoButton.start_offset_x - (bg_width - WIDTH), 
       whatDoButton.y
     );
 
     howBuiltButton.setPosition (
-      howBuiltButton.start_offset_x -(bg_width - WIDTH), 
+      howBuiltButton.start_offset_x - (bg_width - WIDTH), 
       howBuiltButton.y
     );
   }
@@ -179,10 +205,11 @@ function home() {
 
   clamp();
 
-  ctx.drawImage(birds_eye, bg_x, 0, bg_width, HEIGHT);
+  ctx.drawImage(birds_eye, bg_x, bg_y, bg_width, bg_height);
 
   howBuiltButton.draw(ctx);
   whatDoButton.draw(ctx);
+  startButton.draw(ctx)
 
   requestAnimationFrame(home);
 }
@@ -191,13 +218,13 @@ function home() {
 // run
 
 let interval = CircleButton2D.anim_speed;
-
-setInterval ( () => {
+setInterval( () => {
 
   CircleButton2D.advanceFrame();
   howBuiltButton.animate();
   whatDoButton.animate();
 
 }, interval);
+
 
 home();

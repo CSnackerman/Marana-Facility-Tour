@@ -7,7 +7,7 @@ export class CircleButton2D {
 
         this.x = 0;
         this.y = 0;
-        this.sz = 125;
+        this.sz = 135;
 
         this.tempx = 0;
         this.tempy = 0;
@@ -18,7 +18,7 @@ export class CircleButton2D {
         this.spritesheet = new Image();
         this.spritesheet.src = './images/videoicon-anim.png';
 
-        this.cssFont ='bold 8pt Roboto-Bold';
+        this.cssFont ='bold 9pt Roboto-Bold';
         this.textVal1 = 'T1';
         this.textVal2 = 'T2';
         
@@ -43,30 +43,36 @@ export class CircleButton2D {
 
 // --- inits ---
 
-    initHowBuilt() {
+    initHowBuilt(bg_w, bg_h) {
 
-        this.textVal1 = 'HOW IT';
-        this.textVal2 = 'WAS BUILT';
+        this.textVal1 = 'HOW IT ';
+        this.textVal2 = 'WAS BUILT  ';
 
-        if (R_MODE === 'desktop' || R_MODE === 'tablet' || R_MODE === 'mobile') {
-            this.x = WIDTH / 2 - this.sz / 2;
-            this.y = HEIGHT / 2 - this.sz / 2;
-        }   
+        // desired position relative to bg (%)
+        let percent_x = 0.45;
+        let percent_y = 0.3;
 
-        console.log (this)
+        // convert to screen coords (px)
+        this.x = percent_x * bg_w - bg_w / 2 + WIDTH / 2;
+        this.y = bg_h * percent_y;   
+
+        // console.log (this)
     }
 
-    initWhatDo() {
+    initWhatDo(bg_w, bg_h) {
 
         this.textVal1 = 'WHAT WE';
         this.textVal2 = 'DO HERE';
 
-        if (R_MODE === 'desktop' || R_MODE === 'tablet'     || R_MODE === 'mobile') {
-            this.x = WIDTH * 0.71 - this.sz / 2;
-            this.y = HEIGHT * 0.25 - this.sz / 2;
-        }
+        // desired position relative to bg (%)
+        let percent_x = 0.63;
+        let percent_y = 0.23;
 
-        console.log (this)
+        // convert to screen coords (px)
+        this.x = percent_x * bg_w - bg_w / 2 + WIDTH / 2;
+        this.y = bg_h * percent_y;
+
+        // console.log (this)
     }
 
 // -----
