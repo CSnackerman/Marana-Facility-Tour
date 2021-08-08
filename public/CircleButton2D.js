@@ -152,29 +152,27 @@ export class CircleButton2D {
         return false;
     }
 
+    onClick() {
+        showVideoPlayer();
+    }
+
     onHover() {
+        this.isHovered = true;
+    }
 
-        if (this.isHovered) {
-
-            // position
-            this.hoverSize = this.sz;   
-            this.hover_x = this.x;
-            this.hover_y = this.y;
-
-            // scale up
-            if (this.hoverSize < this.sz) {
-                this.hoverSize
-            }
-
-            
-        }
-
-
+    resetHover() {
+        this.hoverSize = 1;
+        this.hover_x = this.center_x;
+        this.hovery_y = this.center_y;
+        this.isHovered = false;
     }
 
     setPosition(new_x, new_y) {
         this.x = new_x;
         this.y = new_y;
+
+        this.center_x = this.x + this.sz / 2;
+        this.center_y = this.y + this.sz / 2;
     }
 
     saveTemp() {
@@ -219,6 +217,15 @@ export class CircleButton2D {
 
         // hover
         if (this.isHovered) {
+
+            // position  
+            this.hover_x = this.center_x - this.hoverSize / 2;
+            this.hover_y = this.center_y - this.hoverSize / 2;
+
+            // scale up
+            if (this.hoverSize < this.sz) {
+                this.hoverSize += 3;
+            }
 
             context.drawImage (
                 this.hoverImg,

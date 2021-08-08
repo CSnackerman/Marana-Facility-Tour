@@ -114,6 +114,15 @@ canvas.addEventListener('mousedown', (e) => {
   startButton.saveTemp();
   howBuiltButton.saveTemp();
   whatDoButton.saveTemp();
+
+  // clicks
+  if (howBuiltButton.collidePointer(e.clientX, e.clientY)) {
+    howBuiltButton.onClick();
+  }
+
+  if (whatDoButton.collidePointer(e.clientX, e.clientY)) {
+    whatDoButton.onClick();
+  }
 });
 
 canvas.addEventListener('mousemove', (e) => {
@@ -146,9 +155,15 @@ canvas.addEventListener('mousemove', (e) => {
   if (howBuiltButton.collidePointer(e.clientX, e.clientY) ) {
     howBuiltButton.onHover();
   }
+  else {
+    howBuiltButton.resetHover();
+  }
 
   if (whatDoButton.collidePointer(e.clientX, e.clientY) ) {
     whatDoButton.onHover();
+  }
+  else {
+    whatDoButton.resetHover();
   }
 });
 
