@@ -26,7 +26,7 @@ function initWelcomer() {
     welcome_image.style.opacity = 1;
     begin_button.style.opacity = 1;
 
-    if (R_MODE === 'mobile') {
+    if (R_MODE === 'mobile' || R_MODE === 'tablet') {
 
         // welcome image
         welcome_img_width = WIDTH - 25;
@@ -44,7 +44,7 @@ function initWelcomer() {
 
     }
 
-    if (R_MODE === 'desktop' || R_MODE === 'tablet') {
+    if (R_MODE === 'desktop') {
 
         // welcome image
         welcome_img_width = WIDTH * 0.5;
