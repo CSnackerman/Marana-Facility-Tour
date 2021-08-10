@@ -64,6 +64,7 @@ export class CircleButton2D {
     }
     
     static anim_speed = 77; // ms
+    static scale_up_speed = 11;
     static frame = 0;
 
 // --- inits ---
@@ -218,14 +219,14 @@ export class CircleButton2D {
         // hover
         if (this.isHovered) {
 
+            // scale up
+            if (this.hoverSize < this.sz) {
+                this.hoverSize += CircleButton2D.scale_up_speed;
+            }
+
             // position  
             this.hover_x = this.center_x - this.hoverSize / 2;
             this.hover_y = this.center_y - this.hoverSize / 2;
-
-            // scale up
-            if (this.hoverSize < this.sz) {
-                this.hoverSize += 3;
-            }
 
             context.drawImage (
                 this.hoverImg,
