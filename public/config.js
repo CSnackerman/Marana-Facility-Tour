@@ -2,7 +2,7 @@
 
 // responsive cutoffs
 const MOBILE_WIDTH = 420;
-const TABLET_WIDTH = 1000;
+const TABLET_WIDTH = 1024;
 const DESKTOP_WIDTH = 1920;
 
 // responsive modes
@@ -45,7 +45,7 @@ function setMode() {
 // function that sets an appropriate video player size
 function setPlayerSize() {
 
-    if (R_MODE === 'mobile') {
+    if (R_MODE === 'mobile' || R_MODE == 'tablet') {
         PLAYER_WIDTH_RAW = WIDTH;
         PLAYER_HEIGHT_RAW = Math.floor (9 * PLAYER_WIDTH_RAW / 16);
     }
@@ -61,7 +61,7 @@ function setPlayerSize() {
 
 function setPlayerPosition() {
 
-    if (R_MODE === 'desktop' || R_MODE === 'tablet') {
+    if (R_MODE === 'desktop') {
         PLAYER_LEFT_RAW = Math.floor (WIDTH / 2 - PLAYER_WIDTH_RAW / 2);
     }
     else {
