@@ -43,6 +43,15 @@ video_container.addEventListener('click', () => {
     }, ms)
 });
 
+window.addEventListener('resize', (e) => {
+    
+    video_player.style.top = PLAYER_TOP;
+    video_player.style.left = PLAYER_LEFT;
+
+    video_player.style.width = PLAYER_WIDTH;
+    video_player.style.height = PLAYER_HEIGHT;
+});
+
 
 // function that overlays the video player + container
 function showVideoPlayer() {

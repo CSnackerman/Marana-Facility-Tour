@@ -64,6 +64,9 @@ function setPlayerPosition() {
     if (R_MODE === 'desktop' || R_MODE === 'tablet') {
         PLAYER_LEFT_RAW = Math.floor (WIDTH / 2 - PLAYER_WIDTH_RAW / 2);
     }
+    else {
+        PLAYER_LEFT_RAW = 0;
+    }
 
     // center vertically always
     PLAYER_TOP_RAW = Math.floor (HEIGHT / 2 - PLAYER_HEIGHT_RAW / 2);
@@ -75,20 +78,31 @@ function setPlayerPosition() {
 
 // resize event
 window.addEventListener ('resize', () => {
+
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
 
     setMode();
     setPlayerSize();
     setPlayerPosition();
-})
+
+    console.log ("\n--- RESIZED ---");
+    logConfig();
+});
+
+
+function logConfig() {
+
+    console.log ("Window Size: " + WIDTH + " x " + HEIGHT);
+    console.log ("Responsive Mode: " + R_MODE);
+    console.log ("Player Size: " + PLAYER_WIDTH + " x " + PLAYER_HEIGHT);
+}
 
 /* ------------- INITIALIZATION ------------------------- */
 
 setMode();
 setPlayerSize();
 setPlayerPosition();
-
 
 // log intial values
 console.log ("Window Size: " + WIDTH + " x " + HEIGHT);
@@ -97,7 +111,6 @@ console.log ("Player Size: " + PLAYER_WIDTH + " x " + PLAYER_HEIGHT);
 
 
 /* ------------------------------------------------------ */
-
 
 export {WIDTH, HEIGHT};
 
