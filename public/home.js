@@ -253,3 +253,34 @@ setInterval( () => {
 
 
 home();
+
+
+
+window.addEventListener ('resize', () => {
+
+  console.log ("resizing home...");
+
+  // background image
+  bg_width = 1920;
+  bg_height = HEIGHT;
+  bg_x = -(bg_width - WIDTH) / 2;
+  bg_y = 0;
+  temp_bg_x = 0;
+
+  // stretch bg if necessary
+  if (WIDTH > 1920) {
+    bg_width = WIDTH;
+  }
+
+  // Start Button
+  startButton.init(bg_width, bg_height);
+  startButton.setInitialBackgroundOffset(bg_x);
+
+
+  // Circle Buttons
+  howBuiltButton.initHowBuilt(bg_width, bg_height);
+  howBuiltButton.setInitialBackgroundOffset (bg_x);
+
+  whatDoButton.initWhatDo(bg_width, bg_height);
+  whatDoButton.setInitialBackgroundOffset (bg_x);
+});
