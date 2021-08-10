@@ -48,6 +48,26 @@ function initNavbox() {
         logo_button.style.marginRight = '-25px';
         // console.log (logo_button);
     }
+    else {
+        
+        let dt_width = '191px';
+
+        navbox_container.style.left = '11%';
+
+        navbox_topper.style.width = dt_width;
+        
+        navbox_buttons.forEach ( (button) => {
+            button.style.width = dt_width;
+            button.style.fontSize = '11pt';
+            button.style.padding = '7px 0';
+            // console.log(button);
+        });
+
+        logo_button.style.right = '10%';
+        logo_button.style.width = '242px';
+        logo_button.style.height = '69px';
+        logo_button.style.margin = '5px 0';
+    }
 }
 
 initNavbox();
@@ -105,4 +125,11 @@ tour360_button.addEventListener('click', () => {
 logo_button.addEventListener ('click', () => {
     console.log ("clicked 'LOGO' button");
     window.open("https://www.bayer.com/en/");
+});
+
+
+
+// resizer
+window.addEventListener ('resize', () => {
+    initNavbox();
 });
