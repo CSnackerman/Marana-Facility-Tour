@@ -127,7 +127,7 @@ export class StartButton {
                 " h-" + bW + 
                 " a" + bRadius + "," + bRadius + " 0 0 1 -" + bRadius + ",-" + bRadius + 
                 " v-" + bH + 
-                " a" + bRadius + "," + bRadius + " 0 0 1 " + bRadius + ",-" + bRadius + " z"
+                " a" + bRadius + "," + bRadius + " 0 0 1 " + bRadius + ",-" + bRadius + " z";
 
             let roundedRect = new Path2D (pathString);           
             
