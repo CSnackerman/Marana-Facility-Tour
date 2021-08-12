@@ -153,19 +153,42 @@ canvas.addEventListener('mousemove', (e) => {
     );
   }
 
-  // button hovers
+  /* button hovers */
+
+  // 'how built' button
   if (howBuiltButton.collidePointer(e.clientX, e.clientY) ) {
     howBuiltButton.onHover();
+    canvas.style.cursor = 'pointer';
   }
   else {
     howBuiltButton.resetHover();
   }
 
+  // 'what do' button
   if (whatDoButton.collidePointer(e.clientX, e.clientY) ) {
     whatDoButton.onHover();
+    canvas.style.cursor = 'pointer';
   }
   else {
     whatDoButton.resetHover();
+  }
+
+  // 'start' button
+  if (startButton.collidePointer(e.clientX, e.clientY)) {
+    startButton.onHover(e);
+    canvas.style.cursor = 'pointer';
+  }
+  else {
+    startButton.isHovered = false;
+  }
+  
+  // no button collides
+  if (
+    ! howBuiltButton.collidePointer(e.clientX, e.clientY) &&
+    ! whatDoButton.collidePointer(e.clientX, e.clientY) &&
+    ! startButton.collidePointer(e.clientX, e.clientY)
+  ) {
+        canvas.style.cursor = 'default';
   }
 });
 
