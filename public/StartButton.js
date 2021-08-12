@@ -22,14 +22,15 @@ export class StartButton {
         this.hoverImage.src = './images/start_button_hover.jpg';
         this.hover_x = 0;
         this.hover_y = 0;
-        this.hover_w = 150;
-        this.hover_h = 155;
+        this.hover_w = 140;
+        this.hover_h = 145;
 
+        this.hoverBorderRadius = 10;
         this.hoverBorderX = 0;
         this.hoverBorderY = 0;
-        this.hoverBorderOffsetX = 10;
-        this.hoverBorderOffsetY = 40;
-        this.hoverBorderW = this.hover_w + this.hoverBorderOffsetX;
+        this.hoverBorderOffsetX = 0;
+        this.hoverBorderOffsetY = 15;
+        this.hoverBorderW = this.hover_w + this.hoverBorderOffsetX * 2 - this.hoverBorderRadius;
         this.hoverBorderH = this.hover_h + this.hoverBorderOffsetY;
         this.hoverMouseOffsetX = this.hover_w / 2
         this.hoverMouseOffsetY = -65
@@ -90,8 +91,8 @@ export class StartButton {
         this.hover_x = mx - this.hoverMouseOffsetX;
         this.hover_y = my - this.hoverMouseOffsetY;
 
-        this.hoverBorderX = mx - this.hoverBorderOffsetX / 2 - this.hoverMouseOffsetX;
-        this.hoverBorderY = my - this.hoverBorderOffsetY / 2 - this.hoverMouseOffsetY;
+        this.hoverBorderX = mx - this.hoverMouseOffsetX + this.hoverBorderOffsetX / 2 + this.hoverBorderRadius / 2;
+        this.hoverBorderY = my - this.hoverMouseOffsetY - this.hoverBorderOffsetY - 3;
     }
 
     draw (context) {
@@ -106,29 +107,33 @@ export class StartButton {
 
         if (this.isHovered) {
 
+            // hover style
+            context.fillStyle = "#0d2b4a99";
+            context.strokeStyle = "#3ea3ce";
+            context.lineWidth = "1.9";
             
-            // fill bg
-            context.fillStyle = "#0d2b4a77";
+            // build Path2D string data
+            let bRadius = String (this.hoverBorderRadius);
+            let bX = String (this.hoverBorderX);
+            let bY = String (this.hoverBorderY);
+            let bW = String (this.hoverBorderW);
+            let bH = String (this.hoverBorderH);
+            let pathString = 
+                "M" + bX + "," + bY + 
+                " h" + bW + 
+                " a" + bRadius + "," + bRadius + " 0 0 1 " + bRadius + "," + bRadius + 
+                " v" + bH + 
+                " a" + bRadius + "," + bRadius + " 0 0 1 -" + bRadius + "," + bRadius + 
+                " h-" + bW + 
+                " a" + bRadius + "," + bRadius + " 0 0 1 -" + bRadius + ",-" + bRadius + 
+                " v-" + bH + 
+                " a" + bRadius + "," + bRadius + " 0 0 1 " + bRadius + ",-" + bRadius + " z"
 
-            context.fillRect (
-                this.hoverBorderX,
-                this.hoverBorderY,
-                this.hoverBorderW,
-                this.hoverBorderH
-            )
-
-            // stroke bg border
-            context.strokeStyle = "#00FFFF";
-            context.lineWidth = "0.5";
-            context.beginPath();
-            context.rect(
-                this.hoverBorderX,
-                this.hoverBorderY,
-                this.hoverBorderW,
-                this.hoverBorderH
-            );
-            context.stroke();
-
+            let roundedRect = new Path2D (pathString);           
+            
+            // draw
+            context.stroke(roundedRect);
+            context.fill(roundedRect);
             context.drawImage (
                 this.hoverImage,
                 this.hover_x,
