@@ -31,6 +31,8 @@ export class StartButton {
         this.hoverBorderOffsetY = 40;
         this.hoverBorderW = this.hover_w + this.hoverBorderOffsetX;
         this.hoverBorderH = this.hover_h + this.hoverBorderOffsetY;
+        this.hoverMouseOffsetX = this.hover_w / 2
+        this.hoverMouseOffsetY = -65
         
         this.isHovered = false;
     }
@@ -79,16 +81,17 @@ export class StartButton {
     }
 
     onHover(e) {
+
         this.isHovered = true;
 
         let mx = e.clientX;
         let my = e.clientY;
 
-        this.hover_x = mx;
-        this.hover_y = my;
+        this.hover_x = mx - this.hoverMouseOffsetX;
+        this.hover_y = my - this.hoverMouseOffsetY;
 
-        this.hoverBorderX = mx - this.hoverBorderOffsetX / 2;
-        this.hoverBorderY = my - this.hoverBorderOffsetY / 2;
+        this.hoverBorderX = mx - this.hoverBorderOffsetX / 2 - this.hoverMouseOffsetX;
+        this.hoverBorderY = my - this.hoverBorderOffsetY / 2 - this.hoverMouseOffsetY;
     }
 
     draw (context) {
