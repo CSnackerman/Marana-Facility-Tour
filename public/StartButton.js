@@ -51,6 +51,10 @@ export class StartButton {
         this.y = bg_h * percent_y;
     }
 
+    onClick() {
+        console.log("clicked start button");
+    }
+
     setPosition (new_x, new_y) {
         this.x = new_x;
         this.y = new_y;
@@ -79,6 +83,10 @@ export class StartButton {
 
         this.isHovered = false;
         return false;
+    }
+
+    resetHover() {
+        this.isHovered = false;
     }
 
     onHover(e) {

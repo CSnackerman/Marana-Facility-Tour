@@ -97,6 +97,22 @@ canvas.addEventListener('touchend', (e) => {
     pointer_x = 0;
     panning = false;
   }
+
+  // clicks
+  if (howBuiltButton.collidePointer(e.clientX, e.clientY)) {
+    howBuiltButton.onClick();
+    panning = false;
+  }
+
+  if (whatDoButton.collidePointer(e.clientX, e.clientY)) {
+    whatDoButton.onClick();
+    panning = false;
+  }
+
+  if (startButton.collidePointer(e.clientX, e.clientY)) {
+    startButton.onClick();
+    panning = false;
+  }
 });
 
 
@@ -124,6 +140,10 @@ canvas.addEventListener('mousedown', (e) => {
   if (whatDoButton.collidePointer(e.clientX, e.clientY)) {
     whatDoButton.onClick();
     panning = false;
+  }
+
+  if (startButton.collidePointer(e.clientX, e.clientY)) {
+    startButton.onClick();
   }
 });
 
@@ -198,6 +218,8 @@ canvas.addEventListener('mouseup', (e) => {
     pointer_x = 0;
     panning = false;
   }
+
+  startButton.resetHover();
 });
 
 
