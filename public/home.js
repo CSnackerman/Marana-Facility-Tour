@@ -118,10 +118,12 @@ canvas.addEventListener('mousedown', (e) => {
   // clicks
   if (howBuiltButton.collidePointer(e.clientX, e.clientY)) {
     howBuiltButton.onClick();
+    panning = false;
   }
 
   if (whatDoButton.collidePointer(e.clientX, e.clientY)) {
     whatDoButton.onClick();
+    panning = false;
   }
 });
 

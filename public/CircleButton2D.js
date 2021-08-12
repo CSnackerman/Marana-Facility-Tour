@@ -155,6 +155,7 @@ export class CircleButton2D {
 
     onClick() {
         showVideoPlayer();
+        this.isHovered = false;
     }
 
     onHover() {
