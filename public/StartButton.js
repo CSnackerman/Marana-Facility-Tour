@@ -93,6 +93,17 @@ export class StartButton {
 
         this.hoverBorderX = mx - this.hoverMouseOffsetX + this.hoverBorderOffsetX / 2 + this.hoverBorderRadius / 2;
         this.hoverBorderY = my - this.hoverMouseOffsetY - this.hoverBorderOffsetY - 3;
+
+        // clamp within screen
+        if (this.hoverBorderX + this.hoverBorderW + this.hoverBorderRadius - 1 > WIDTH) {
+            this.hover_x = WIDTH - this.hover_w - this.hoverBorderRadius / 2;
+            this.hoverBorderX = WIDTH - this.hoverBorderW - this.hoverBorderRadius - 1;
+        }
+
+        if (this.hoverBorderY + this.hoverBorderH + this.hoverBorderRadius * 2  > HEIGHT) {
+            this.hover_y = HEIGHT - this.hover_h - this.hoverBorderRadius * 2 + 3;
+            this.hoverBorderY = HEIGHT - this.hoverBorderH - this.hoverBorderRadius * 2;
+        }
     }
 
     draw (context) {
