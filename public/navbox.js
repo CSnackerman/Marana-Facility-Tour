@@ -76,49 +76,49 @@ initNavbox();
 // event listeners
 overview_button.addEventListener('click', () => {
     console.log ("clicked 'OVERVIEW' button");
-    showVideoPlayer();
+    showVideoPlayer("https://www.youtube.com/embed/wc7Y917exqI");
 });
 
 
 howitwasbuilt_button.addEventListener('click', () => {
     console.log ("clicked 'HOW IT WAS BUILT' button");
-    showVideoPlayer();
+    showVideoPlayer("https://www.youtube.com/embed/zUFAzpldIak");
 });
 
 
 chipping_button.addEventListener('click', () => {
     console.log ("clicked 'CHIPPING' button");
-    showVideoPlayer();
+    showVideoPlayer("https://www.youtube.com/embed/LRs-BW0Sn5o");
 });
 
 
 seeding_button.addEventListener('click', () => {
     console.log ("clicked 'SEEDING' button");
-    showVideoPlayer();
+    showVideoPlayer("https://www.youtube.com/embed/VeAkCf9SK8Y");
 });
 
 
 germination_button.addEventListener('click', () => {
     console.log ("clicked 'GERMINATION' button");
-    showVideoPlayer();
+    showVideoPlayer("https://www.youtube.com/embed/BtlJ1y6eemQ");
 });
 
 
 plantselection_button.addEventListener('click', () => {
     console.log ("clicked 'PLANT SELECTION' button");
-    showVideoPlayer();
+    showVideoPlayer("https://www.youtube.com/embed/oX26gNIagJ0");
 });
 
 
 pollination_button.addEventListener('click', () => {
     console.log ("clicked 'POLLINATION' button");
-    showVideoPlayer();
+    showVideoPlayer("https://www.youtube.com/embed/ovznZNkM5YU");
 });
 
 
 tour360_button.addEventListener('click', () => {
     console.log ("clicked '360 TOUR' button");
-    showVideoPlayer();
+    showVideoPlayer("https://www.youtube.com/embed/x5BSnIYGOGk");
 });
 
 

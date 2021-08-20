@@ -61,6 +61,9 @@ export class CircleButton2D {
 
         this.isHovered = false;
         this.hoverAnimFinished = false;
+
+        // video source
+        this.vidsrc = "";
     }
     
     static anim_speed = 77; // ms
@@ -90,6 +93,9 @@ export class CircleButton2D {
         // set hover image
         this.hoverImg.src = './images/hover-howitwasbuilt.png';
 
+        // set video src
+        this.vidsrc = "https://www.youtube.com/embed/zUFAzpldIak"
+
         // console.log (this)
     }
 
@@ -113,6 +119,8 @@ export class CircleButton2D {
 
         // set hover image
         this.hoverImg.src = './images/hover-overview.png';
+
+        this.vidsrc = "https://www.youtube.com/embed/wc7Y917exqI"
 
         // console.log (this)
     }
@@ -154,7 +162,7 @@ export class CircleButton2D {
     }
 
     onClick() {
-        showVideoPlayer();
+        showVideoPlayer(this.vidsrc);
         this.isHovered = false;
     }
 
