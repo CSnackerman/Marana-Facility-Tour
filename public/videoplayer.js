@@ -6,17 +6,18 @@ import { PLAYER_TOP, PLAYER_LEFT }      from './config.js';
 const video_container = document.getElementById('video_container');
 
 // create component
-const video_player = document.createElement('div');
+const video_player = document.getElementById('video_player');
 
-// append to container
-video_container.appendChild(video_player);
 
 // style container
 video_container.style.backgroundColor = 'black';
 video_container.style.opacity = PLAYER_BG_OPACITY;
+video_container.style.border = 'none';
 
 // style player
 video_player.style.position = 'fixed';
+
+video_player.style.zIndex = 1000;
 
 video_player.style.top = PLAYER_TOP;
 video_player.style.left = PLAYER_LEFT;
@@ -24,7 +25,9 @@ video_player.style.left = PLAYER_LEFT;
 video_player.style.width = PLAYER_WIDTH;
 video_player.style.height = PLAYER_HEIGHT;
 
-video_player.style.backgroundColor = 'gray';
+video_player.style.backgroundColor = 'transparent';
+
+video_player.style.display = 'none';
 
 
 
@@ -35,8 +38,10 @@ video_container.addEventListener('click', () => {
     let keyframe_2 = { opacity: 0 };
     let ms = 333;
 
-
     let fade_out = video_container.animate([keyframe_1, keyframe_2], ms);
+    video_player.animate ([keyframe_1, {opacity:1}], ms)
+
+    video_player.style.display = 'none';
 
     setTimeout(() => {
         video_container.style.display = 'none';
@@ -54,7 +59,9 @@ window.addEventListener('resize', (e) => {
 
 
 // function that overlays the video player + container
-function showVideoPlayer() {
+function showVideoPlayer(videosrc) {
+
+    video_player.src = videosrc;
 
     video_container.style.display = 'block';
     video_container.style.position = 'fixed';
@@ -70,9 +77,12 @@ function showVideoPlayer() {
 
     video_container.animate([keyframe_1, keyframe_2], ms);
 
-    video_player.style.opacity = 1;
+    setTimeout(() => {
+        video_player.style.display = 'block';
+    }, ms)
 
-    console.log (video_player);
+
+    // console.log (video_player);
 }
 
 // exports
