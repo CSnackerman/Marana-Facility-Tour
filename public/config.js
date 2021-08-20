@@ -1,5 +1,8 @@
 /* -------------- CONFIGURATION -------------- */
 
+// for the video player CORS issues
+document.cookie = "secure=true"
+
 // responsive cutoffs
 const MOBILE_WIDTH = 420;
 const TABLET_WIDTH = 1024;
