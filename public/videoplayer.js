@@ -61,8 +61,6 @@ window.addEventListener('resize', (e) => {
 // function that overlays the video player + container
 function showVideoPlayer(videosrc) {
 
-    video_player.src = videosrc;
-
     video_container.style.display = 'block';
     video_container.style.position = 'fixed';
     video_container.style.left = 0;
@@ -79,8 +77,10 @@ function showVideoPlayer(videosrc) {
 
     setTimeout(() => {
         video_player.style.display = 'block';
+        video_player.src = videosrc;
     }, ms)
 
+    
 
     // console.log (video_player);
 }
