@@ -42,6 +42,7 @@ video_container.addEventListener('click', () => {
     video_player.animate ([keyframe_1, {opacity:1}], ms)
 
     video_player.style.display = 'none';
+    video_player.src = "";
 
     setTimeout(() => {
         video_container.style.display = 'none';
