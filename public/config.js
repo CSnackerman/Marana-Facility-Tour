@@ -1,7 +1,7 @@
 /* -------------- CONFIGURATION -------------- */
 
 // for the video player CORS issues
-document.cookie = "secure=true"
+document.cookie = "SameSite=None;Secure"
 
 // responsive cutoffs
 const MOBILE_WIDTH = 420;
@@ -27,6 +27,18 @@ var PLAYER_TOP_RAW = 0;
 var PLAYER_LEFT_RAW = 0;
 var PLAYER_TOP = 0;
 var PLAYER_LEFT = 0;
+
+
+// toggler
+var tourToggle = 'home'
+
+function toggleTour() {
+    
+    if (tourToggle === 'home') 
+        tourToggle = 'tour';
+    else 
+        tourToggle = 'home';
+}
 
 
 /* --------------- FUNCTIONS ------------------------- */
@@ -121,3 +133,5 @@ export { PLAYER_BG_OPACITY }
 export { PLAYER_WIDTH, PLAYER_HEIGHT }
 export { PLAYER_TOP, PLAYER_LEFT }
 export { R_MODE }
+
+export { tourToggle, toggleTour }
