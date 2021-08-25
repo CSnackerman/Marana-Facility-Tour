@@ -1,4 +1,5 @@
-import { WIDTH, HEIGHT, R_MODE } from './config.js';
+import { WIDTH, HEIGHT, R_MODE, toggleTour, tourToggle } from './config.js';
+
 
 export class StartButton {
 
@@ -53,6 +54,7 @@ export class StartButton {
 
     onClick() {
         console.log("clicked start button");
+        toggleTour();
     }
 
     setPosition (new_x, new_y) {

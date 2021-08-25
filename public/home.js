@@ -1,10 +1,12 @@
 import { WIDTH, HEIGHT } from "./config.js";
-import { R_MODE } from "./config.js";
+import { tourToggle, toggleTour } from "./config.js";
 
 import { CircleButton2D } from "./CircleButton2D.js";
 
-import { showVideoPlayer } from "./videoplayer.js";
 import { StartButton } from "./StartButton.js";
+
+import {runTour} from "./tour.js"
+
 
 // boilerplate
 const canvas = document.getElementById('c');
@@ -111,7 +113,9 @@ canvas.addEventListener('touchend', (e) => {
 
   if (startButton.collidePointer(e.clientX, e.clientY)) {
     startButton.onClick();
+    document.body.removeChild (canvas);
     panning = false;
+    runTour();
   }
 });
 
@@ -144,6 +148,9 @@ canvas.addEventListener('mousedown', (e) => {
 
   if (startButton.collidePointer(e.clientX, e.clientY)) {
     startButton.onClick();
+    document.body.removeChild (canvas);
+    panning = false;
+    runTour();
   }
 });
 
@@ -283,11 +290,15 @@ function home() {
   whatDoButton.draw(ctx);
   startButton.draw(ctx)
 
+  if (tourToggle === 'tour') {
+    return;
+  }
+
   requestAnimationFrame(home);
+
 }
 
-
-// run
+// =================== RUN =================================
 
 let interval = CircleButton2D.anim_speed;
 setInterval( () => {
@@ -299,9 +310,10 @@ setInterval( () => {
 }, interval);
 
 
-home();
 
+  home();
 
+// =========================================================
 
 window.addEventListener ('resize', () => {
 

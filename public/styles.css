@@ -199,6 +199,8 @@ html, body {
     background-size: contain;
     background-repeat: no-repeat;
     border: none;
+
+    z-index: 1000;
 }
 
 
