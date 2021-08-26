@@ -15,10 +15,13 @@ console.log (canvas.style.width, canvas.style.height);
 
 document.body.appendChild( canvas );
 
-
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
+const texLoader = new THREE.TextureLoader();
+const sphere_1 = new THREE.SphereGeometry(1, 32, 32);
+const material = new THREE.MeshBasicMaterial( { 
+    map: texLoader.load ('images/scene1v7.png'), 
+    side: THREE.BackSide
+} );
+const cube = new THREE.Mesh( sphere_1, material );
 scene.add( cube );
 
 camera.position.z = 5;
