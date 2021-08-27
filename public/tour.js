@@ -16,6 +16,7 @@ document.body.appendChild( canvas );
 
 // camera
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+camera.position.z = 0.1;
 
 // controls 
 const controls = new OrbitControls(camera, canvas);
@@ -25,7 +26,6 @@ controls.target.set(0, 0, 0);
 controls.enableZoom = false;
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.update();
 
 // geometry
 const texLoader = new THREE.TextureLoader();
@@ -38,29 +38,55 @@ const material = new THREE.MeshBasicMaterial( {
 const scene_1_sphere = new THREE.Mesh( sphere_1, material );
 scene.add( scene_1_sphere );
 
-camera.position.z = 0.1;
+
 
 // ----------------------------------------------------------------------
 
-
 const runTour = function () {
-
-    controls.update();
     
+    controls.update();
+
     renderer.render( scene, camera );
+
 
     if (tourToggle === 'home') {
         return
     }
 
-    
     requestAnimationFrame( runTour );
 };
+
+// ----------- Listeners ------------------------------
+
 
 window.addEventListener ('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize (window.innerWidth, window.innerHeight);
 }, false);
+
+canvas.addEventListener ('touchmove', (e) => {
+    pinchzoom (e);
+})
+
+
+document.addEventListener ('wheel', (e) => {
+    let dampener = 10;
+    let delta = e.deltaY / dampener;
+    camera.fov += delta;
+
+    if (camera.fov < 30) {
+        camera.fov = 30;
+    }
+    
+    if (camera.fov > 115) {
+        camera.fov = 115;
+    }
+
+    camera.updateProjectionMatrix();
+})
+
+
+
 
 export { runTour };
