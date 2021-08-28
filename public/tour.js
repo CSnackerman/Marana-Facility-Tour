@@ -4,6 +4,8 @@ import {OrbitControls} from 'https://cdn.skypack.dev/three@latest/examples/jsm/c
 import { tourToggle } from './config.js';
 import { HEIGHT, WIDTH } from './config.js';
 
+import { CircleButton3D } from './CircleButton3D.js';
+
 // setup
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({antialias: true});
@@ -16,7 +18,7 @@ document.body.appendChild( canvas );
 
 // camera
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-camera.position.z = 0.1;
+camera.position.x = -0.1;
 
 // controls 
 const controls = new OrbitControls(camera, canvas);
@@ -35,8 +37,18 @@ const material = new THREE.MeshBasicMaterial( {
     side: THREE.BackSide
 } );
 
+// buttons  
+const button1 = new CircleButton3D (
+    0.85, 0, 0.07,  // position
+    0, -Math.PI/2, 0,  // rotation
+    0.1                 // size
+);
+button1.animate();
+
+// add objects to scene
 const scene_1_sphere = new THREE.Mesh( sphere_1, material );
 scene.add( scene_1_sphere );
+scene.add (button1.mesh);
 
 
 
