@@ -37,18 +37,24 @@ const material = new THREE.MeshBasicMaterial( {
     side: THREE.BackSide
 } );
 
+// spheres
+const scene_1_sphere = new THREE.Mesh( sphere_1, material );
+
 // buttons  
 const button1 = new CircleButton3D (
+    'one',          // name
     0.85, 0, 0.07,  // position
     0, -Math.PI/2, 0,  // rotation
     0.1                 // size
 );
 button1.animate();
 
-// add objects to scene
-const scene_1_sphere = new THREE.Mesh( sphere_1, material );
+
+
+// scene management
 scene.add( scene_1_sphere );
-scene.add (button1.mesh);
+button1.addToScene (scene);
+// scene.add (button1.mesh);
 
 
 
@@ -76,10 +82,6 @@ window.addEventListener ('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize (window.innerWidth, window.innerHeight);
 }, false);
-
-canvas.addEventListener ('touchmove', (e) => {
-    pinchzoom (e);
-})
 
 
 document.addEventListener ('wheel', (e) => {
