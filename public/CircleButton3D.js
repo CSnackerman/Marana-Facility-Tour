@@ -57,8 +57,8 @@ class CircleButton3D {
             transparent: true,
             opacity: 1
         });
-        this.textSize = sz * 0.65;
-        this.textGeometry = new THREE.PlaneGeometry (this.textSize, this.textSize - 0.01);
+        this.textSize = sz * 0.9;
+        this.textGeometry = new THREE.PlaneGeometry (this.textSize, this.textSize);
         this.textMesh = new THREE.Mesh (this.textGeometry, this.textMaterial);;
 
         // position and rotate text
@@ -78,12 +78,12 @@ class CircleButton3D {
     static texture = CircleButton3D.textureLoader.load ('./images/videoicon-anim-scaled.png');
 
     static textTextures = {
-        one: CircleButton3D.textureLoader.load ('images/one.png'),
-        two: CircleButton3D.textureLoader.load ('images/two.png'),
-        three: CircleButton3D.textureLoader.load ('images/three.png'),
-        four: CircleButton3D.textureLoader.load ('images/four.png'),
-        five: CircleButton3D.textureLoader.load ('images/five.png'),
-        journey: CircleButton3D.textureLoader.load ('images/journey.png'),
+        one: CircleButton3D.textureLoader.load ('images/text-chipping.png'),
+        two: CircleButton3D.textureLoader.load ('images/text-seeding.png'),
+        three: CircleButton3D.textureLoader.load ('images/text-germination.png'),
+        four: CircleButton3D.textureLoader.load ('images/text-plantselection.png'),
+        five: CircleButton3D.textureLoader.load ('images/text-pollination.png'),
+        journey: CircleButton3D.textureLoader.load ('images/text-360conveyortour.png'),
     };
 
     static animation_delay = 77; // ms
@@ -130,7 +130,7 @@ class CircleButton3D {
     }
 
     onHover() {
-        
+        console.log ('hi')
     }
 
     noHover() {
