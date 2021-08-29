@@ -37,7 +37,9 @@ function handleIntersections () {
 }
 
 // camera
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera (
+    75, window.innerWidth / window.innerHeight, 0.1, 1000 
+);
 camera.position.x = -0.1;
 
 // controls 
@@ -117,20 +119,23 @@ canvas.addEventListener ('mousemove', (e) => {
 
 document.addEventListener ('wheel', (e) => {
 
-    if (tourToggle === 'tour') {
-
-        let dampener = 10;
-        let delta = e.deltaY / dampener;
-        camera.fov += delta;
-
-        if (camera.fov < 30) {
-            camera.fov = 30;
-        }
-        
-        if (camera.fov > 115) {
-            camera.fov = 115;
-        }
+    // guard
+    if ( tourToggle === 'home' ) {
+        return;
     }
+
+    let dampener = 10;
+    let delta = e.deltaY / dampener;
+    camera.fov += delta;
+
+    if (camera.fov < 30) {
+        camera.fov = 30;
+    }
+    
+    if (camera.fov > 115) {
+        camera.fov = 115;
+    }
+    
     camera.updateProjectionMatrix();
 })
 
