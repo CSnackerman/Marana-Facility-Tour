@@ -58,7 +58,7 @@ class CircleButton3D {
             opacity: 1
         });
         this.textSize = sz * 0.65;
-        this.textGeometry = new THREE.PlaneGeometry (this.textSize, this.textSize);
+        this.textGeometry = new THREE.PlaneGeometry (this.textSize, this.textSize - 0.01);
         this.textMesh = new THREE.Mesh (this.textGeometry, this.textMaterial);;
 
         // position and rotate text
@@ -73,6 +73,7 @@ class CircleButton3D {
     }
 
     static allInited = false;
+
     static textureLoader = new THREE.TextureLoader();
     static texture = CircleButton3D.textureLoader.load ('./images/videoicon-anim-scaled.png');
 
@@ -107,7 +108,7 @@ class CircleButton3D {
     
     animate () {
 
-        setInterval (() => {
+        setInterval ( () => {
 
             if (!this.isHovered) {
 
@@ -118,18 +119,14 @@ class CircleButton3D {
                 let row = Math.floor (CircleButton3D.frame / 7);
                 let col = CircleButton3D.frame % 7;
 
-                // set the offset (works weird)
+                // set the offset
                 this.mesh.material.map.offset.set (73.1428571429 * col, 1024 - 73.1428571429 * row);
 
                 // console.log (row, col)
                 // console.log (this.mesh.material.map.offset)
 
             }
-
-            
         }, CircleButton3D.animation_delay);
-
-        
     }
     
 }
