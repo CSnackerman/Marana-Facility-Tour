@@ -83,8 +83,17 @@ class CircleButton3D {
         three: CircleButton3D.textureLoader.load ('images/text-germination.png'),
         four: CircleButton3D.textureLoader.load ('images/text-plantselection.png'),
         five: CircleButton3D.textureLoader.load ('images/text-pollination.png'),
-        journey: CircleButton3D.textureLoader.load ('images/text-360conveyortour.png'),
+        journey: CircleButton3D.textureLoader.load ('images/text-360conveyortour.png')
     };
+
+    static hoverTextures = {
+        one: CircleButton3D.textureLoader.load ('images/hover-chipping.png'),
+        two: CircleButton3D.textureLoader.load ('images/hover-seeding.png'),
+        three: CircleButton3D.textureLoader.load ('images/hover-germination.png'),
+        four: CircleButton3D.textureLoader.load ('images/hover-plantselection.png'),
+        five: CircleButton3D.textureLoader.load ('images/hover-pollination.png'),
+        journey: CircleButton3D.textureLoader.load ('images/hover-360conveyortour.png')
+    }
 
     static animation_delay = 77; // ms
     static frame = 0;
