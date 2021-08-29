@@ -1,4 +1,3 @@
-// import { THREE } from "./ThreeModules.js";
 import * as THREE from 'https://cdn.skypack.dev/three@latest';
 
 class CircleButton3D {
