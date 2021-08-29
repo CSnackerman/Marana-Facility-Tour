@@ -1,4 +1,5 @@
-import {THREE} from './ThreeModules.js'
+// import {THREE} from './ThreeModules.js'
+import * as THREE from 'https://cdn.skypack.dev/three@latest';
 import {OrbitControls} from 'https://cdn.skypack.dev/three@latest/examples/jsm/controls/OrbitControls.js'
 
 import { tourToggle, toggleTour } from './config.js';
