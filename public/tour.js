@@ -3,9 +3,9 @@ import * as THREE from 'https://cdn.skypack.dev/three@latest';
 import {OrbitControls} from 'https://cdn.skypack.dev/three@latest/examples/jsm/controls/OrbitControls.js'
 
 import { tourToggle, toggleTour } from './config.js';
-import { HEIGHT, WIDTH } from './config.js';
 
 import { CircleButton3D } from './CircleButton3D.js';
+import { ProgressButton3D } from './ProgressButton3D.js';
 
 // setup
 const scene = new THREE.Scene();
@@ -19,6 +19,7 @@ document.body.appendChild( canvas );
 
 // mouse
 let mouse = new THREE.Vector2();
+let pointer = new THREE.Vector2();
 let raycaster = new THREE.Raycaster();
 
 function handleIntersections () {
@@ -31,9 +32,19 @@ function handleIntersections () {
         if (button1.mesh.uuid === intersects [0].object.uuid) {
             button1.onHover();
         }
+
+        else if (homeButton.mesh.uuid === intersects [0].object.uuid) {
+            homeButton.onHover(pointer);
+        }
+
+        else if (progress1.mesh.uuid === intersects [0].object.uuid) {
+            progress1.onHover(pointer);
+        }
     }
     else {
         button1.noHover();
+        progress1.noHover();
+        homeButton.noHover();
     }
 }
 
@@ -63,8 +74,7 @@ const material = new THREE.MeshBasicMaterial( {
 // spheres
 const scene_1_sphere = new THREE.Mesh( sphere_1, material );
 
-// buttons
-let intersectables = [];
+// circle buttons
 const button1 = new CircleButton3D (
     'one',          // name
     0.85, 0, 0.07,  // position
@@ -73,18 +83,40 @@ const button1 = new CircleButton3D (
 );
 button1.animate();
 
-intersectables.push (button1.mesh);
 
+
+// progress buttons
+const homeButton = new ProgressButton3D (
+    'home',
+    -0.85,0,0,
+    0,Math.PI / 2,0,
+    0.4
+)
+
+const progress1 = new ProgressButton3D(
+    'prog_one',
+    0.6, -0.3, 0,
+    Math.PI /2, 0, -Math.PI / 2,
+    0.3
+);
 
 
 // scene management
 scene.add( scene_1_sphere );
 button1.addToScene (scene);
-// scene.add (button1.mesh);
+homeButton.addToScene (scene);
+progress1.addToScene (scene);
+
+
+// collision detection
+let intersectables = [];
+intersectables.push (button1.mesh);
+intersectables.push (homeButton.mesh);
+intersectables.push (progress1.mesh);
 
 
 
-// ----------------------------------------------------------------------
+// ---------- Render Loop ----------------------------------------------------
 
 const runTour = function () {
     
@@ -93,7 +125,6 @@ const runTour = function () {
     handleIntersections();
 
     renderer.render( scene, camera );
-
 
     if (tourToggle === 'home') {
         return
@@ -112,10 +143,14 @@ window.addEventListener ('resize', () => {
 }, false);
 
 
-canvas.addEventListener ('mousemove', (e) => {
+document.addEventListener ('mousemove', (e) => {
 
     mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+    
+    pointer.x = e.clientX;
+    pointer.y = e.clientY;
+
 })
 
 document.addEventListener ('wheel', (e) => {

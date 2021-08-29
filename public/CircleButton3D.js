@@ -21,6 +21,9 @@ class CircleButton3D {
         this.mesh.position.set (x, y, z);
         this.mesh.rotation.set (rotx, roty, rotz);
 
+        // hover
+        this.hoverElement = document.getElementById ('progress_hover');
+
 
         // set the textures based on name
         switch (name) {
