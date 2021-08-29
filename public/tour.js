@@ -85,18 +85,21 @@ window.addEventListener ('resize', () => {
 
 
 document.addEventListener ('wheel', (e) => {
-    let dampener = 10;
-    let delta = e.deltaY / dampener;
-    camera.fov += delta;
 
-    if (camera.fov < 30) {
-        camera.fov = 30;
-    }
-    
-    if (camera.fov > 115) {
-        camera.fov = 115;
-    }
+    if (tourToggle === 'tour') {
+        
+        let dampener = 10;
+        let delta = e.deltaY / dampener;
+        camera.fov += delta;
 
+        if (camera.fov < 30) {
+            camera.fov = 30;
+        }
+        
+        if (camera.fov > 115) {
+            camera.fov = 115;
+        }
+    }
     camera.updateProjectionMatrix();
 })
 
