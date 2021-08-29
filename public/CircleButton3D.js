@@ -128,6 +128,14 @@ class CircleButton3D {
             }
         }, CircleButton3D.animation_delay);
     }
+
+    onHover() {
+        
+    }
+
+    noHover() {
+        
+    }
     
 }
 

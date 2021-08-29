@@ -1,7 +1,7 @@
 import {THREE} from './ThreeModules.js'
 import {OrbitControls} from 'https://cdn.skypack.dev/three@latest/examples/jsm/controls/OrbitControls.js'
 
-import { tourToggle } from './config.js';
+import { tourToggle, toggleTour } from './config.js';
 import { HEIGHT, WIDTH } from './config.js';
 
 import { CircleButton3D } from './CircleButton3D.js';
@@ -15,6 +15,26 @@ canvas.style.zIndex = 5;
 canvas.style.position = 'fixed';
 
 document.body.appendChild( canvas );
+
+// mouse
+let mouse = new THREE.Vector2();
+let raycaster = new THREE.Raycaster();
+
+function handleIntersections () {
+    
+    raycaster.setFromCamera( mouse, camera );
+    const intersects = raycaster.intersectObjects ( intersectables );
+
+    if (intersects.length > 0) {
+
+        if (button1.mesh.uuid === intersects [0].object.uuid) {
+            button1.onHover();
+        }
+    }
+    else {
+        button1.noHover();
+    }
+}
 
 // camera
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -40,7 +60,8 @@ const material = new THREE.MeshBasicMaterial( {
 // spheres
 const scene_1_sphere = new THREE.Mesh( sphere_1, material );
 
-// buttons  
+// buttons
+let intersectables = [];
 const button1 = new CircleButton3D (
     'one',          // name
     0.85, 0, 0.07,  // position
@@ -48,6 +69,8 @@ const button1 = new CircleButton3D (
     0.1                 // size
 );
 button1.animate();
+
+intersectables.push (button1.mesh);
 
 
 
@@ -63,6 +86,8 @@ button1.addToScene (scene);
 const runTour = function () {
     
     controls.update();
+
+    handleIntersections();
 
     renderer.render( scene, camera );
 
@@ -84,10 +109,16 @@ window.addEventListener ('resize', () => {
 }, false);
 
 
+canvas.addEventListener ('mousemove', (e) => {
+
+    mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+})
+
 document.addEventListener ('wheel', (e) => {
 
     if (tourToggle === 'tour') {
-        
+
         let dampener = 10;
         let delta = e.deltaY / dampener;
         camera.fov += delta;
