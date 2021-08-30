@@ -1,7 +1,8 @@
 import * as THREE from 'https://cdn.skypack.dev/three@latest';
-import {OrbitControls} from 'https://cdn.skypack.dev/three@latest/examples/jsm/controls/OrbitControls.js'
+import { OrbitControls  } from 'https://cdn.skypack.dev/three@latest/examples/jsm/controls/OrbitControls.js'
 
 import { tourToggle, toggleTour } from './config.js';
+
 
 import { CircleButton3D } from './CircleButton3D.js';
 import { ProgressButton3D } from './ProgressButton3D.js';
@@ -14,7 +15,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 canvas.style.zIndex = 5;
 canvas.style.position = 'fixed';
 
-document.body.appendChild( canvas );
+document.body.appendChild ( canvas );
 
 // mouse
 let mouse = new THREE.Vector2();
@@ -82,7 +83,7 @@ const button1 = new CircleButton3D (
 );
 button1.animate();
 
-
+var circleButtons = [ button1 ];
 
 // progress buttons
 const homeButton = new ProgressButton3D (
@@ -141,6 +142,12 @@ window.addEventListener ('resize', () => {
     renderer.setSize (window.innerWidth, window.innerHeight);
 }, false);
 
+
+canvas.addEventListener ('click', (e) => {
+    circleButtons.forEach ( (button) => {
+        button.onClick();
+    })
+});
 
 document.addEventListener ('mousemove', (e) => {
 

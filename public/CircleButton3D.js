@@ -1,5 +1,7 @@
 import * as THREE from 'https://cdn.skypack.dev/three@latest';
 
+import {showVideoPlayer} from './videoplayer.js';
+
 class CircleButton3D {
 
     constructor (name, x, y, z, rotx, roty, rotz, sz) {
@@ -24,37 +26,43 @@ class CircleButton3D {
         this.hoverElement = document.getElementById ('progress_hover');
 
 
-        // set the textures based on name
+        // set the name-based attributes
         switch (name) {
 
             case 'one': 
                 this.textTexture = CircleButton3D.textTextures.one;
                 this.hoverTexture = CircleButton3D.hoverTextures.one;
+                this.vidsrc = "https://www.youtube.com/embed/LRs-BW0Sn5o";
                 break;
 
             case 'two': 
                 this.textTexture = CircleButton3D.textTextures.two;
                 this.hoverTexture = CircleButton3D.hoverTextures.two;
+                this.vidsrc = "https://www.youtube.com/embed/VeAkCf9SK8Y";
                 break;
 
             case 'three': 
                 this.textTexture = CircleButton3D.textTextures.three;
                 this.hoverTexture = CircleButton3D.hoverTextures.three;
+                this.vidsrc = "https://www.youtube.com/embed/BtlJ1y6eemQ";
                 break;
 
             case 'four': 
                 this.textTexture = CircleButton3D.textTextures.four;
                 this.hoverTexture = CircleButton3D.hoverTextures.four;
+                this.vidsrc  ="https://www.youtube.com/embed/oX26gNIagJ0";
                 break;
 
             case 'five': 
                 this.textTexture = CircleButton3D.textTextures.five;
                 this.hoverTexture = CircleButton3D.hoverTextures.five;
+                this.vidsrc = "https://www.youtube.com/embed/ovznZNkM5YU";
                 break;
 
             case 'journey': 
                 this.textTexture = CircleButton3D.textTextures.journey;
                 this.hoverTexture = CircleButton3D.hoverTextures.journey;
+                this.vidsrc = "https://www.youtube.com/embed/x5BSnIYGOGk";
                 break;
 
             default:
@@ -197,6 +205,12 @@ class CircleButton3D {
 
         clearInterval (this.hoverInterval);
         this.hoverInterval = null;
+    }
+
+    onClick () {
+        if (this.isHovered) {
+            showVideoPlayer (this.vidsrc)
+        }
     }
     
 }
