@@ -33,8 +33,8 @@ function handleIntersections () {
             button1.onHover();
         }
 
-        else if (homeButton.mesh.uuid === intersects [0].object.uuid) {
-            homeButton.onHover(pointer);
+        else if (progressHome.mesh.uuid === intersects [0].object.uuid) {
+            progressHome.onHover(pointer);
         }
 
         else if (progress1.mesh.uuid === intersects [0].object.uuid) {
@@ -44,7 +44,7 @@ function handleIntersections () {
     else {
         button1.noHover();
         progress1.noHover();
-        homeButton.noHover();
+        progressHome.noHover();
     }
 }
 
@@ -63,16 +63,25 @@ controls.enableZoom = false;
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
-// geometry
+// scene spheres
 const texLoader = new THREE.TextureLoader();
-const sphere_1 = new THREE.SphereGeometry(1, 32, 32);
-const material = new THREE.MeshBasicMaterial( { 
+
+//scene 1
+const scene1_sphere = new THREE.SphereGeometry(1, 32, 32);
+const scene1_material = new THREE.MeshBasicMaterial( { 
     map: texLoader.load ('images/scene1v7.png'), 
     side: THREE.BackSide
 } );
+const scene1_mesh = new THREE.Mesh( scene1_sphere, scene1_material );
 
-// spheres
-const scene_1_sphere = new THREE.Mesh( sphere_1, material );
+//scene 2
+const scene2_sphere = new THREE.SphereGeometry(1, 32, 32);
+const scene2_material = new THREE.MeshBasicMaterial( { 
+    map: texLoader.load ('images/scene2.png'), 
+    side: THREE.BackSide
+} );
+const scene2_mesh = new THREE.Mesh( scene2_sphere, scene2_material );
+
 
 // circle buttons
 const button1 = new CircleButton3D (
@@ -83,10 +92,21 @@ const button1 = new CircleButton3D (
 );
 button1.animate();
 
-var circleButtons = [ button1 ];
+const button2 = new CircleButton3D (
+    'two',
+    0, 0, 0.1,
+    0, 0, 0,
+    0.2
+);
+button2.animate();
+
+var circleButtons = [ 
+    button1,
+    button2
+];
 
 // progress buttons
-const homeButton = new ProgressButton3D (
+const progressHome = new ProgressButton3D (
     'home',
     -0.85,0,0,
     0,Math.PI / 2,0,
@@ -100,18 +120,24 @@ const progress1 = new ProgressButton3D(
     0.3
 );
 
+var progressButtons = [ 
+    progressHome, 
+    progress1
+]
+
 
 // scene management
-scene.add( scene_1_sphere );
+scene.add( scene1_mesh );
 button1.addToScene (scene);
-homeButton.addToScene (scene);
+
+progressHome.addToScene (scene);
 progress1.addToScene (scene);
 
 
 // collision detection
 let intersectables = [];
 intersectables.push (button1.mesh);
-intersectables.push (homeButton.mesh);
+intersectables.push (progressHome.mesh);
 intersectables.push (progress1.mesh);
 
 
