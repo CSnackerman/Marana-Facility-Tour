@@ -10,10 +10,6 @@ app.get ('/', (req, res) => {
     res.redirect ('/tour')
 })
 
-app.get ('/test', (req, res) => {
-    res.redirect ('/tour')
-})
-
 app.use ('/tour', express.static ('public'))
 
 app.listen (port, () => {
