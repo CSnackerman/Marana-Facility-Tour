@@ -88,7 +88,7 @@ class SceneManager {
             if (obj.type === 'circle_button' ) {
                 obj.deanimate();
             }
-            
+
             if (obj.type === 'circle_button' || obj.type === 'progress_button') {
                 obj.hide()
             }
@@ -107,6 +107,36 @@ class SceneManager {
         if ( this.sceneNumber === 2 ) {
             this.currentScene = this.SCENE_2;
             this.currentSceneObjects = this.sceneObjects2;
+        }
+
+        if ( this.sceneNumber === 3 ) {
+            this.currentScene = this.SCENE_3;
+            this.currentSceneObjects = this.sceneObjects3;
+        }
+
+        if ( this.sceneNumber === 4 ) {
+            this.currentScene = this.SCENE_4;
+            this.currentSceneObjects = this.sceneObjects4;
+        }
+
+        if ( this.sceneNumber === 5 ) {
+            this.currentScene = this.SCENE_5;
+            this.currentSceneObjects = this.sceneObjects5;
+        }
+
+        if ( this.sceneNumber === 6 ) {
+            this.currentScene = this.SCENE_6;
+            this.currentSceneObjects = this.sceneObjects6;
+        }
+
+        if ( this.sceneNumber === 7 ) {
+            this.currentScene = this.SCENE_7;
+            this.currentSceneObjects = this.sceneObjects7;
+        }
+
+        if ( this.sceneNumber === 8 ) {
+            this.currentScene = this.SCENE_8;
+            this.currentSceneObjects = this.sceneObjects8;
         }
 
         console.log ('SCENE SWITCH')
