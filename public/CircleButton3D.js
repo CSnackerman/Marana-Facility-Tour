@@ -84,8 +84,6 @@ class CircleButton3D {
         this.textMesh.position.set (x - 0.01, y, z);
         this.textMesh.rotation.set (rotx, roty, rotz);
 
-
-        
         // hover stuff
         this.enabled = true;
         this.hoverInterval = null;
