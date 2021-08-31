@@ -24,11 +24,18 @@ class SceneManager {
         this.SCENE_7.name = 'SCENE_7';
         this.SCENE_8.name = 'SCENE_8';
 
-        this.sceneNumber = 1;
-        this.currentScene = this.SCENE_1;
+        this.sceneNumber = undefined;
+        this.currentScene = undefined;
 
-
-
+        this.currentSceneObjects = undefined;
+        this.sceneObjects1 = [];
+        this.sceneObjects2 = [];
+        this.sceneObjects3 = [];
+        this.sceneObjects4 = [];
+        this.sceneObjects5 = [];
+        this.sceneObjects6 = [];
+        this.sceneObjects7 = [];
+        this.sceneObjects8 = [];
     }
 
     initScene(sceneNum, objects) {
@@ -50,12 +57,83 @@ class SceneManager {
         }
 
         objects.forEach( (obj) => {
-            obj.addToScene (scene);
-        });
 
-        console.log (this);
+            // obj.addToScene (scene);
+
+            if (obj.type === 'circle_button' || obj.type === 'progress_button') {
+                obj.hide();
+            }
+
+            if (sceneNum === 1) { this.sceneObjects1.push (obj); }
+            if (sceneNum === 2) { this.sceneObjects2.push (obj); }
+            if (sceneNum === 3) { this.sceneObjects3.push (obj); }
+            if (sceneNum === 4) { this.sceneObjects4.push (obj); }
+            if (sceneNum === 5) { this.sceneObjects5.push (obj); }
+            if (sceneNum === 6) { this.sceneObjects6.push (obj); }
+            if (sceneNum === 7) { this.sceneObjects7.push (obj); }
+            if (sceneNum === 8) { this.sceneObjects8.push (obj); }
+        });
     }
 
+    
+
+    setScene (sceneNum) {
+
+        if (this.sceneNumber === undefined ) {
+            this.currentSceneObjects = this.sceneObjects1;
+        }
+        else {
+            // deanimate previous scene
+            this.currentSceneObjects.forEach ( (obj) => {
+            if (obj.type === 'circle_button' ) {
+                obj.deanimate();
+
+                if (obj.type === 'circle_button' || obj.type === 'progress_button') {
+                    obj.hide()
+                }
+            }
+        });
+        }
+        
+
+        // update scene
+        this.sceneNumber = sceneNum;
+
+        if ( this.sceneNumber === 1 ) {
+            this.currentScene = this.SCENE_1;
+            this.currentSceneObjects = this.sceneObjects1;
+        }
+
+        if ( this.sceneNumber === 2 ) {
+            this.currentScene = this.SCENE_2;
+            this.currentSceneObjects = this.sceneObjects2;
+        }
+
+        console.log ('sceneobjects', this.currentSceneObjects)
+
+        // animate new scene
+        this.currentSceneObjects.forEach ( (obj) => {
+
+            console.log (this);
+            obj.addToScene (this.currentScene);
+
+            if (obj.type === 'circle_button' || obj.type === 'progress_button') {
+                obj.show();
+            }
+
+            if (obj.type === 'circle_button' ) {
+                obj.animate();
+            }
+        });
+
+        console.log ('SCENE SWITCH')
+        console.log ('sceneNumber', this.sceneNumber);
+        console.log ('currentScene', this.currentScene);
+    }
+
+    getSceneNumber () {
+        return this.sceneNumber;
+    }
     // setSwapSphere() {
 
     //     let sphere, mat;

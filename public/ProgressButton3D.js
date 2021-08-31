@@ -2,6 +2,8 @@ import * as THREE from 'https://cdn.skypack.dev/three@latest';
 
 import { toggleTour } from './config.js';
 
+import {sceneManager} from './tour.js';
+
 class ProgressButton3D {
 
     constructor (name, x, y, z, rotx, roty, rotz, sz, forward) {
@@ -123,7 +125,16 @@ class ProgressButton3D {
 
     onClick() {
 
-        if (this.isHovered) {
+        
+
+        if (this.isHovered && this.enabled) {
+
+            console.log ('clicked', this.name);
+
+            if (this.name === 'prog_five') {
+                console.log ('maxed out');
+                return;
+            }
 
             // homeguard
             if (this.name === 'home') {
@@ -132,10 +143,13 @@ class ProgressButton3D {
             }
 
             if (this.forward) {
-    
+                let nextSceneNumber = sceneManager.getSceneNumber() + 1;
+                sceneManager.setScene (nextSceneNumber)
                 console.log ('go forward')
             }
             else {
+                let prevSceneNumber = sceneManager.getSceneNumber() - 1;
+                sceneManager.setScene (prevSceneNumber)
                 console.log ('go back')
             }
         }

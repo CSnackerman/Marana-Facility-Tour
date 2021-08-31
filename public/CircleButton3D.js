@@ -111,6 +111,7 @@ class CircleButton3D {
 
         // animation frame
         this.frame = 0;
+        this.animationInterval = undefined;
         
         // console.log (this);
     }
@@ -163,7 +164,7 @@ class CircleButton3D {
     
     animate () {
 
-        setInterval ( () => {
+        this.animationInterval = setInterval ( () => {
 
             if (!this.isHovered) {
 
@@ -178,6 +179,13 @@ class CircleButton3D {
                 this.mesh.material.map.offset.set (73.1428571429 * col, 1024 - 73.1428571429 * row);
             }
         }, CircleButton3D.animation_delay);
+    }
+
+    deanimate() {
+        if (this.animationInterval === null) {
+            return;
+        }
+        clearInterval (this.animationInterval);
     }
 
     onHover() {
@@ -219,7 +227,7 @@ class CircleButton3D {
     }
 
     onClick () {
-        if (this.isHovered) {
+        if (this.isHovered && this.enabled) {
             showVideoPlayer (this.vidsrc)
             console.log ('clicked', this.name)
         }

@@ -35,7 +35,7 @@ controls.dampingFactor = 0.05;
 
 /* Spheres */
 const sphere1 = new Sphere ('one', 0);
-// const sphere2 = new Sphere ('two', 0);
+const sphere2 = new Sphere ('two', 0);
 // const sphere3 = new Sphere ('three', 0);
 // const sphere4 = new Sphere ('four', 0);
 // const sphere5 = new Sphere ('five', 0);
@@ -55,6 +55,13 @@ const button1 = new CircleButton3D (
     0, -Math.PI/2, 0,  // rotation
     0.1                 // size
 );
+
+// const button1_2 = new CircleButton3D (
+//     'one',          // name
+//     0.85, 0.3, 0.07,  // position
+//     0, -Math.PI/2, 0,  // rotation
+//     0.1                 // size
+// );
 
 
 // const button2 = new CircleButton3D (
@@ -92,16 +99,10 @@ const button1 = new CircleButton3D (
 //     0.1
 // );
 
-button1.animate();
-// button2.animate();
-// button3.animate();
-// button4.animate();
-// button5.animate();
-// buttonJourney.animate();
-
 
 const circleButtons = [ 
     button1,
+    // button1_2
     // button2,
     // button3,
     // button4,
@@ -121,8 +122,8 @@ const progressHome = new ProgressButton3D (
 
 const progressBack = new ProgressButton3D (
     'prog_back',
-    10,10,10,
-    0,Math.PI / 2,0,
+    0.2,0.2,0.2,
+    0,Math.PI / 4,0,
     0.4,
     false
 )
@@ -227,7 +228,11 @@ function handleIntersections () {
     // no intersection
     else {
 
-        objects.forEach ( (obj) => {
+        progressButtons.forEach ( (obj) => {
+            obj.noHover();
+        });
+
+        circleButtons.forEach ( (obj) => {
             obj.noHover();
         });
     }
@@ -236,7 +241,11 @@ function handleIntersections () {
 
 /* Scene Management */
 const sceneManager = new SceneManager();
-sceneManager.initScene (1, [sphere1, button1, progressHome, progress1]);
+sceneManager.initScene ( 1, [sphere1, button1, progressHome, progress1] );
+sceneManager.initScene ( 2, [sphere2, button1, progressBack, progress2] );
+
+// set intial scene
+sceneManager.setScene (1);
 
 
 // ---------- Render Loop ----------------------------------------------------
@@ -312,4 +321,4 @@ document.addEventListener ('wheel', (e) => {
 
 
 
-export { runTour };
+export { runTour, sceneManager };
