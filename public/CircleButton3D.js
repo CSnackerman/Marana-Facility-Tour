@@ -10,6 +10,8 @@ class CircleButton3D {
 
         this.name = 'button_' + name;
 
+        this.type = 'circle_button';
+
         this.material = new THREE.MeshBasicMaterial ({ 
             map: CircleButton3D.texture, 
             side: THREE.DoubleSide,
@@ -219,6 +221,7 @@ class CircleButton3D {
     onClick () {
         if (this.isHovered) {
             showVideoPlayer (this.vidsrc)
+            console.log ('clicked', this.name)
         }
     }
 

@@ -10,6 +10,8 @@ class ProgressButton3D {
 
         this.forward = forward;
 
+        this.type = 'progress_button';
+
         this.material = new THREE.MeshBasicMaterial ({ 
             map: ProgressButton3D.texture, 
             side: THREE.DoubleSide,

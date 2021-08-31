@@ -119,13 +119,13 @@ const progressHome = new ProgressButton3D (
     false
 )
 
-// const progressBack = new ProgressButton3D (
-//     'prog_back',
-//     10,10,10,
-//     0,Math.PI / 2,0,
-//     0.4,
-//     false
-// )
+const progressBack = new ProgressButton3D (
+    'prog_back',
+    10,10,10,
+    0,Math.PI / 2,0,
+    0.4,
+    false
+)
 
 const progress1 = new ProgressButton3D (
     'prog_one',
@@ -135,21 +135,21 @@ const progress1 = new ProgressButton3D (
     true
 );
 
-// const progress2 = new ProgressButton3D (
-//     'prog_two',
-//     10, 10, 10,
-//     Math.PI /2, 0, -Math.PI / 2,
-//     0.3,
-//     true
-// );
+const progress2 = new ProgressButton3D (
+    'prog_two',
+    10, 10, 10,
+    Math.PI /2, 0, -Math.PI / 2,
+    0.3,
+    true
+);
 
 
 
 const progressButtons = [
     progressHome, 
-    // progressBack,
+    progressBack,
     progress1,
-    // progress2
+    progress2
 ]
 
 
@@ -159,42 +159,77 @@ let mouse = new THREE.Vector2();
 let pointer = new THREE.Vector2();
 let raycaster = new THREE.Raycaster();
 
-let intersectables = [];
+const objects1 = [button1, progressHome, progress1];
+const objects2 = [button1, progress2, progressBack];
+const objects3 = [];
+const objects4 = [];
+const objects5 = [];
+const objects6 = [];
+const objects7 = [];
+const objects8 = [];
 
-circleButtons.forEach ( (button) => {
-    intersectables.push (button.mesh);
-})
-
-progressButtons.forEach ( (button) => {
-    intersectables.push (button.mesh);
-})
+const intersectables1 = [button1.mesh, progressHome.mesh, progress1.mesh];
+const intersectables2 = [button1.mesh, progress2.mesh, progressBack.mesh];
+const intersectables3 = [];
+const intersectables4 = [];
+const intersectables5 = [];
+const intersectables6 = [];
+const intersectables7 = [];
+const intersectables8 = [];
 
 function handleIntersections () {
     
+    let sceneNum = sceneManager.sceneNumber;
+    
+    let intersectables;
+    if (sceneNum === 1) { intersectables = intersectables1; }
+    else if (sceneNum === 2) { intersectables = intersectables2; }
+    else if (sceneNum === 3) { intersectables = intersectables3; }
+    else if (sceneNum === 4) { intersectables = intersectables4; }
+    else if (sceneNum === 5) { intersectables = intersectables5; }
+    else if (sceneNum === 6) { intersectables = intersectables6; }
+    else if (sceneNum === 7) { intersectables = intersectables7; }
+    else if (sceneNum === 8) { intersectables = intersectables8; }
+
+    let objects;
+    if (sceneNum === 1) { objects = objects1; }
+    else if (sceneNum === 2) { objects = objects2; }
+    else if (sceneNum === 3) { objects = objects3; }
+    else if (sceneNum === 4) { objects = objects4; }
+    else if (sceneNum === 5) { objects = objects5; }
+    else if (sceneNum === 6) { objects = objects6; }
+    else if (sceneNum === 7) { objects = objects7; }
+    else if (sceneNum === 8) { objects = objects8; }
+
+
     raycaster.setFromCamera( mouse, camera );
     const intersects = raycaster.intersectObjects ( intersectables );
 
+    // is intersection
     if (intersects.length > 0) {
 
-        if (button1.mesh.uuid === intersects [0].object.uuid) {
-            button1.onHover();
-        }
+        objects.forEach ( (obj) => {
 
+            if ( obj.mesh.uuid === intersects [0].object.uuid ) {
 
-        else if (progressHome.mesh.uuid === intersects [0].object.uuid) {
-            progressHome.onHover(pointer);
-        }
+                if (obj.type === 'circle_button') {
+                    obj.onHover();
+                }
+                else {
+                    obj.onHover(pointer);
+                }
+                
+            }
+        });
 
-        else if (progress1.mesh.uuid === intersects [0].object.uuid) {
-            progress1.onHover(pointer);
-        }
     }
+
+    // no intersection
     else {
 
-        button1.noHover();
-
-        progressHome.noHover();
-        progress1.noHover();
+        objects.forEach ( (obj) => {
+            obj.noHover();
+        });
     }
 }
 
