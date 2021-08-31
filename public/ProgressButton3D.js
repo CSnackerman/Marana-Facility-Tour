@@ -33,7 +33,7 @@ class ProgressButton3D {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.mesh.position.set (x, y, z);
+        this.mesh.position.set (x,y,z);
         this.mesh.rotation.set (rotx, roty, rotz);
 
         // hover stuff
@@ -135,11 +135,6 @@ class ProgressButton3D {
 
             console.log ('clicked', this.name);
 
-            if (this.name === 'prog_five') {
-                console.log ('maxed out');
-                return;
-            }
-
             // homeguard
             if (this.name === 'home') {
                 console.log ('go home');
@@ -148,13 +143,13 @@ class ProgressButton3D {
 
             if (this.forward) {
                 let nextSceneNumber = sceneManager.getSceneNumber() + 1;
-                sceneManager.setScene (nextSceneNumber)
                 console.log ('go forward')
+                sceneManager.setScene (nextSceneNumber)
             }
             else {
                 let prevSceneNumber = sceneManager.getSceneNumber() - 1;
-                sceneManager.setScene (prevSceneNumber)
                 console.log ('go back')
+                sceneManager.setScene (prevSceneNumber)
             }
         }
     }
@@ -165,7 +160,7 @@ class ProgressButton3D {
         this.mesh.visible = false;
 
         // teleport away
-        this.mesh.position.set (10, 10, 10);
+        // this.mesh.position.set (10, 10, 10);
         
         console.log (this.name, 'hidden');
     }
@@ -180,16 +175,37 @@ class ProgressButton3D {
     // configurations
     configForScene (sceneNum) {
 
+
+        console.log ('configuring', this.name, 'for scene', sceneNum);
+
+
+        if (sceneNum === 1 && this.name === 'home') {
+            this.mesh.position.set (-0.85,0,0);
+            this.mesh.rotation.set (0,Math.PI / 2,0);
+            console.log ('home position', this.mesh.position)
+        }
+
+
         if (sceneNum === 1 && this.name === 'prog_one') {
             this.mesh.position.set (0.6, -0.3, 0);
             this.mesh.rotation.set (Math.PI /2, 0, -Math.PI / 2);
             // this.mesh.scale.set (0, 0, 0);
         }
 
-        else if (sceneNum === 2 && this.name === 'prog_2') {
-            this.hide();
-            this.mesh.position.set (0.6, -0.3, 0);
-            this.mesh.rotation.set (Math.PI /2, 0, -Math.PI / 2);
+        else if (sceneNum === 2 && this.name === 'prog_two') {
+
+            console.log ('config', this);
+            this.x = 0.813;
+            this.y = -0.222;
+            this.z = -0.072;
+            // this.mesh.position.set (0.813, -0.222, -0.072);
+            console.log (this.mesh.position);
+
+            let rotx = toRad (93.16 )
+            let roty = toRad (13.77 )
+            let rotz = toRad (-91.50)
+            this.mesh.rotation.set (rotx, roty, rotz);
+
             // this.mesh.scale.set (0, 0, 0);
         }
 
@@ -197,10 +213,19 @@ class ProgressButton3D {
         else if (this.name === 'prog_back') {
 
             if (sceneNum === 2) {
-                this.hide();
-                this.mesh.position.set (0.6, -0.3, 0);
-                this.mesh.rotation.set (Math.PI /2, 0, -Math.PI / 2);
-                this.mesh.scale.set (0, 0, 0);
+                this.x = -0.832;
+                this.y = -0.352;
+                this.z = 0.033;
+
+                let rotx = toRad (94.57)
+                let roty = toRad (-43.50)
+                let rotz = toRad (89.29)
+                this.mesh.rotation.set (rotx, roty, rotz);
+
+                this.mesh.scale.set (1.000, 0.623, 1.000);
+                
+                // this.mesh.scale.set (0, 0, 0);
+
             }
             
             

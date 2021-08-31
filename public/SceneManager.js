@@ -87,10 +87,10 @@ class SceneManager {
             this.currentSceneObjects.forEach ( (obj) => {
             if (obj.type === 'circle_button' ) {
                 obj.deanimate();
-
-                if (obj.type === 'circle_button' || obj.type === 'progress_button') {
-                    obj.hide()
-                }
+            }
+            
+            if (obj.type === 'circle_button' || obj.type === 'progress_button') {
+                obj.hide()
             }
         });
         }
@@ -109,12 +109,13 @@ class SceneManager {
             this.currentSceneObjects = this.sceneObjects2;
         }
 
+        console.log ('SCENE SWITCH')
+        console.log ('sceneNumber', this.sceneNumber);
         console.log ('sceneobjects', this.currentSceneObjects)
 
         // animate new scene
         this.currentSceneObjects.forEach ( (obj) => {
 
-            console.log (this);
             obj.addToScene (this.currentScene);
 
             if (obj.type === 'circle_button' || obj.type === 'progress_button') {
@@ -127,8 +128,8 @@ class SceneManager {
             }
         });
 
-        console.log ('SCENE SWITCH')
-        console.log ('sceneNumber', this.sceneNumber);
+        
+        
         console.log ('currentScene', this.currentScene);
     }
 

@@ -44,7 +44,7 @@ const sphere2 = new Sphere ('two', 0);
 // const sphere8 = new Sphere ('eight', 0);
 
 
-var swappingSphere = null;
+const swappingSphere = null;
 
 
 /* Circle Buttons */
@@ -131,7 +131,7 @@ const progress1 = new ProgressButton3D (
 
 const progress2 = new ProgressButton3D (
     'prog_two',
-    10, 10, 10,
+    0,0,0,
     Math.PI /2, 0, -Math.PI / 2,
     0.3,
     true
