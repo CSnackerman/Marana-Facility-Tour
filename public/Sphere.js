@@ -2,7 +2,7 @@ import * as THREE from 'https://cdn.skypack.dev/three@latest';
 
 class Sphere {
 
-    constructor (name, rotz) {
+    constructor (name) {
 
         this.name = 'sphere_' + name;
         this.geometry = new THREE.SphereGeometry (1, 32, 32);
@@ -29,7 +29,7 @@ class Sphere {
         this.mesh.name = this.name;
 
         this.mesh.position.set (0, 0, 0);
-        this.mesh.rotation.set (0, 0, rotz);
+        this.mesh.rotation.set (0, 0, 0);
     }
 
     static textureLoader = new THREE.TextureLoader();
@@ -37,6 +37,7 @@ class Sphere {
     addToScene(scene) {
         scene.add (this.mesh);
     }
+
 }
 
 

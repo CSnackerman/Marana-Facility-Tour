@@ -4,6 +4,10 @@ import { toggleTour } from './config.js';
 
 import {sceneManager} from './tour.js';
 
+import {toRad} from './Utility.js';
+
+
+
 class ProgressButton3D {
 
     constructor (name, x, y, z, rotx, roty, rotz, sz, forward) {
@@ -171,6 +175,36 @@ class ProgressButton3D {
         this.enabled = true;
         this.mesh.visible = true;
         console.log (this.name, 'shown');
+    }
+
+    // configurations
+    configForScene (sceneNum) {
+
+        if (sceneNum === 1 && this.name === 'prog_one') {
+            this.mesh.position.set (0.6, -0.3, 0);
+            this.mesh.rotation.set (Math.PI /2, 0, -Math.PI / 2);
+            // this.mesh.scale.set (0, 0, 0);
+        }
+
+        else if (sceneNum === 2 && this.name === 'prog_2') {
+            this.hide();
+            this.mesh.position.set (0.6, -0.3, 0);
+            this.mesh.rotation.set (Math.PI /2, 0, -Math.PI / 2);
+            // this.mesh.scale.set (0, 0, 0);
+        }
+
+
+        else if (this.name === 'prog_back') {
+
+            if (sceneNum === 2) {
+                this.hide();
+                this.mesh.position.set (0.6, -0.3, 0);
+                this.mesh.rotation.set (Math.PI /2, 0, -Math.PI / 2);
+                this.mesh.scale.set (0, 0, 0);
+            }
+            
+            
+        }
     }
 
 

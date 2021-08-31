@@ -118,6 +118,7 @@ class SceneManager {
             obj.addToScene (this.currentScene);
 
             if (obj.type === 'circle_button' || obj.type === 'progress_button') {
+                obj.configForScene (this.sceneNumber);
                 obj.show();
             }
 

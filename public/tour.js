@@ -56,13 +56,6 @@ const button1 = new CircleButton3D (
     0.1                 // size
 );
 
-// const button1_2 = new CircleButton3D (
-//     'one',          // name
-//     0.85, 0.3, 0.07,  // position
-//     0, -Math.PI/2, 0,  // rotation
-//     0.1                 // size
-// );
-
 
 // const button2 = new CircleButton3D (
 //     'two',
@@ -159,6 +152,7 @@ const progressButtons = [
 let mouse = new THREE.Vector2();
 let pointer = new THREE.Vector2();
 let raycaster = new THREE.Raycaster();
+var clickHeld = false;
 
 const objects1 = [button1, progressHome, progress1];
 const objects2 = [button1, progress2, progressBack];
@@ -208,6 +202,8 @@ function handleIntersections () {
 
     // is intersection
     if (intersects.length > 0) {
+        
+        canvas.style.cursor = 'pointer';
 
         objects.forEach ( (obj) => {
 
@@ -218,8 +214,7 @@ function handleIntersections () {
                 }
                 else {
                     obj.onHover(pointer);
-                }
-                
+                }   
             }
         });
 
@@ -228,6 +223,8 @@ function handleIntersections () {
     // no intersection
     else {
 
+        canvas.style.cursor = 'default';
+                
         progressButtons.forEach ( (obj) => {
             obj.noHover();
         });
@@ -285,6 +282,15 @@ canvas.addEventListener ('click', (e) => {
         button.onClick();
     });
 });
+
+canvas.addEventListener ('mousedown', (e) => {
+    clickHeld = true;
+})
+
+canvas.addEventListener ('mouseup', (e) => {
+    clickHeld = false;
+})
+
 
 document.addEventListener ('mousemove', (e) => {
 

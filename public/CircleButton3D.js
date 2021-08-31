@@ -2,6 +2,8 @@ import * as THREE from 'https://cdn.skypack.dev/three@latest';
 
 import {showVideoPlayer} from './videoplayer.js';
 
+import {toRad} from './Utility.js';
+
 class CircleButton3D {
 
     constructor (name, x, y, z, rotx, roty, rotz, sz) {
@@ -106,6 +108,9 @@ class CircleButton3D {
         this.hoverMesh.position.set (x - 0.02, y, z);
         this.hoverMesh.rotation.set (rotx, roty, rotz);
         this.hoverScale = 0;
+        this.baseScaleRate = 0.01;
+        this.scaleRate = this.baseScaleRate;
+        this.maxHoverScale = 0.11;
 
         
 
@@ -157,9 +162,9 @@ class CircleButton3D {
     }
 
     addToScene(scene) {
-        scene.add (this.mesh);
         scene.add (this.textMesh);
         scene.add (this.hoverMesh);
+        scene.add (this.mesh);
     }
     
     animate () {
@@ -200,8 +205,8 @@ class CircleButton3D {
 
         this.hoverInterval = setInterval ( () => {
 
-        if (this.hoverScale < 0.1) {
-            this.hoverScale += 0.01;
+        if (this.hoverScale < this.maxHoverScale) {
+            this.hoverScale += this.scaleRate;
             let s = this.hoverScale;
             this.hoverMesh.scale.set(s,s,s);
         }
@@ -249,6 +254,48 @@ class CircleButton3D {
         this.hoverMesh.visible = true;
 
         console.log (this.name, 'shown');
+    }
+
+    
+    // configurations
+    configForScene (sceneNum) {
+
+        if (sceneNum === 1 && this.name === 'button_one') {
+
+            this.mesh.position.set (0.85, 0, 0.07);
+            this.textMesh.position.set (0.83, 0, 0.07);
+            this.hoverMesh.position.set (0.81, 0, 0.07);
+
+            this.mesh.rotation.set (0, -Math.PI/2, 0);
+            this.textMesh.rotation.set (0, -Math.PI/2, 0);
+            this.hoverMesh.rotation.set (0, -Math.PI/2, 0);
+
+            this.mesh.scale.set (1, 1, 1);
+            this.textMesh.scale.set (1, 1, 1);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+        }
+
+        else if (sceneNum === 2 && this.name === 'button_one') {
+
+            this.mesh.position.set (0.636, 0, 0.696);
+            this.textMesh.position.set (0.623, 0, 0.684);
+            this.hoverMesh.position.set (0.609, 0, 0.671);
+
+            let rotx = toRad (180.00);
+            let roty = toRad (-39.71);
+            let rotz = toRad (180.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (2, 2, 2);
+            this.textMesh.scale.set (2, 2, 2);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = 0.20;
+            this.scaleRate = this.baseScaleRate * 2;
+        }
     }
     
 }
