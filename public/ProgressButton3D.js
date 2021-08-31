@@ -179,56 +179,79 @@ class ProgressButton3D {
         console.log ('configuring', this.name, 'for scene', sceneNum);
 
 
-        if (sceneNum === 1 && this.name === 'home') {
-            this.mesh.position.set (-0.85,0,0);
-            this.mesh.rotation.set (0,Math.PI / 2,0);
-            console.log ('home position', this.mesh.position)
+        if (this.name === 'home') {
+            this.configHome();
         }
 
 
-        if (sceneNum === 1 && this.name === 'prog_one') {
-            this.mesh.position.set (0.6, -0.3, 0);
-            this.mesh.rotation.set (Math.PI /2, 0, -Math.PI / 2);
-            // this.mesh.scale.set (0, 0, 0);
+        if (this.name === 'prog_one') {
+            this.configProgress_1 ();
         }
 
-        else if (sceneNum === 2 && this.name === 'prog_two') {
+        else if (this.name === 'prog_two') {
+            this.configProgress_2();
+        }
 
-            console.log ('config', this);
-            this.x = 0.813;
-            this.y = -0.222;
-            this.z = -0.072;
-            // this.mesh.position.set (0.813, -0.222, -0.072);
-            console.log (this.mesh.position);
+        else if (this.name === 'prog_three') {
+            this.configProgress_3();
+        }
 
-            let rotx = toRad (93.16 )
-            let roty = toRad (13.77 )
-            let rotz = toRad (-91.50)
-            this.mesh.rotation.set (rotx, roty, rotz);
-
-            // this.mesh.scale.set (0, 0, 0);
+        else if (this.name === 'prog_four') {
+            this.configProgress_3();
         }
 
 
         else if (this.name === 'prog_back') {
+            this.configBack(sceneNum);
+        }
+    }
 
-            if (sceneNum === 2) {
-                this.x = -0.832;
-                this.y = -0.352;
-                this.z = 0.033;
+    configHome() {
+        this.mesh.position.set (-0.85,0,0);
+        this.mesh.rotation.set (0,Math.PI / 2,0);
+    }
 
-                let rotx = toRad (94.57)
-                let roty = toRad (-43.50)
-                let rotz = toRad (89.29)
-                this.mesh.rotation.set (rotx, roty, rotz);
+    configProgress_1() {
+        this.mesh.position.set (0.6, -0.3, 0);
+        this.mesh.rotation.set (Math.PI /2, 0, -Math.PI / 2);
+    }
 
-                this.mesh.scale.set (1.000, 0.623, 1.000);
-                
-                // this.mesh.scale.set (0, 0, 0);
+    configProgress_2() {
+        this.x = 0.813;
+        this.y = -0.222;
+        this.z = -0.072;
 
-            }
-            
-            
+        let rotx = toRad (93.16 )
+        let roty = toRad (13.77 )
+        let rotz = toRad (-91.50)
+        this.mesh.rotation.set (rotx, roty, rotz);
+    }
+
+    configProgress_3() {
+        this.x = 0.813;
+        this.y = -0.222;
+        this.z = -0.072;
+
+        let rotx = toRad (93.16 )
+        let roty = toRad (13.77 )
+        let rotz = toRad (-91.50)
+        this.mesh.rotation.set (rotx, roty, rotz);
+    }
+
+    configBack(sceneNum) {
+
+        if (sceneNum === 2) {
+            this.x = -0.832;
+            this.y = -0.352;
+            this.z = 0.033;
+
+            let rotx = toRad (94.57)
+            let roty = toRad (-43.50)
+            let rotz = toRad (89.29)
+            this.mesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (1.000, 0.623, 1.000);
+
         }
     }
 
