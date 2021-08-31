@@ -85,7 +85,7 @@ class CircleButton3D {
         this.textMesh.rotation.set (rotx, roty, rotz);
 
         // hover stuff
-        this.enabled = true;
+        this.enabled = false;
         this.hoverInterval = null;
         this.isHovered = false;
         this.hoverMaterial = new THREE.MeshBasicMaterial ({ 
@@ -102,12 +102,14 @@ class CircleButton3D {
         this.hoverMesh.rotation.set (rotx, roty, rotz);
         this.hoverScale = 0;
 
-        console.log (this);
-
+        
 
         // animation frame
         this.frame = 0;
+        
+        // console.log (this);
 
+        this.hide();
     }
 
     static allInited = false;
@@ -224,6 +226,8 @@ class CircleButton3D {
         this.mesh.visible = false;
         this.textMesh.visible = false;
         this.hoverMesh.visible = false;
+
+        console.log (this.name, 'hidden');
     }
 
     show() {
@@ -231,6 +235,8 @@ class CircleButton3D {
         this.mesh.visible = true;
         this.textMesh.visible = true;
         this.hoverMesh.visible = true;
+
+        console.log (this.name, 'shown');
     }
     
 }

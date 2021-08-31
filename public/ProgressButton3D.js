@@ -1,7 +1,6 @@
 import * as THREE from 'https://cdn.skypack.dev/three@latest';
 
 import { toggleTour } from './config.js';
-import {CURRENT_SCENE, switchScene} from './tour.js';
 
 class ProgressButton3D {
 
@@ -29,10 +28,12 @@ class ProgressButton3D {
         this.mesh.rotation.set (rotx, roty, rotz);
 
         // hover stuff
-        this.enabled = true;
+        this.enabled = false;
         this.isHovered = false;
         this.hoverSVGElement = document.getElementById ('progress_hover');
         this.hoverImageElement = document.getElementById ('progress_hover_image');
+
+        this.hide();
     }
 
     static textureLoader = new THREE.TextureLoader();
@@ -94,6 +95,8 @@ class ProgressButton3D {
             return;
         }
 
+        console.log (this.name, 'hover');
+
         let x = Math.floor (mousepos.x);
         let y = Math.floor (mousepos.y);
 
@@ -123,21 +126,17 @@ class ProgressButton3D {
 
             // homeguard
             if (this.name === 'home') {
-                console.log ('clicked home');
-                this.noHover();
+                console.log ('go home');
                 return;
             }
 
             if (this.forward) {
-                switchScene (CURRENT_SCENE + 1);
-                console.log (CURRENT_SCENE);
+    
+                console.log ('go forward')
             }
             else {
-                switchScene (CURRENT_SCENE - 1);
-                console.log (CURRENT_SCENE);
+                console.log ('go back')
             }
-            
-            this.noHover();
         }
     }
 
