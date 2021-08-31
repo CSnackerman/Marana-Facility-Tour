@@ -8,7 +8,7 @@ class CircleButton3D {
 
     constructor (name, x, y, z, rotx, roty, rotz, sz) {
 
-        CircleButton3D.initStaticTexture();
+        CircleButton3D.initStatics();
 
         this.name = 'button_' + name;
 
@@ -116,8 +116,8 @@ class CircleButton3D {
         
 
         // animation frame
-        this.frame = 0;
-        this.animationInterval = undefined;
+        
+        // this.animationInterval = undefined;
         
         // console.log (this);
     }
@@ -147,10 +147,12 @@ class CircleButton3D {
     }
 
     // animation stuff
+    static animation_interval = undefined;
     static animation_delay = 77; // ms
     static growRate = 17; // ms
+    static frame = 0;
 
-    static initStaticTexture() {
+    static initStatics() {
         if (!CircleButton3D.allInited) {
 
             CircleButton3D.texture.wrapS = THREE.RepeatWrapping;
@@ -159,7 +161,16 @@ class CircleButton3D {
             CircleButton3D.texture.repeat.set (1 / 7, 1 / 7);
 
             CircleButton3D.allInited = true;
+
+            CircleButton3D.frameAdvancer();
         }
+    }
+
+    static frameAdvancer() {
+
+        CircleButton3D.animation_interval = setInterval ( () => {
+            CircleButton3D.frame = (CircleButton3D.frame + 1) % 49;
+        }, CircleButton3D.animation_delay);
     }
 
     addToScene(scene) {
@@ -175,16 +186,15 @@ class CircleButton3D {
             if (!this.isHovered) {
 
                 // advance frame
-                this.frame = (this.frame + 1) % 49;
                 
                 // calculate row and column of texture atlas
-                let row = Math.floor (this.frame / 7);
-                let col = this.frame % 7;
+                let row = Math.floor (CircleButton3D.frame / 7);
+                let col = CircleButton3D.frame % 7;
 
                 // set the offset
                 this.mesh.material.map.offset.set (73.1428571429 * col, 1024 - 73.1428571429 * row);
             }
-        }, CircleButton3D.animation_delay);
+        }, CircleButton3D.animation_delay / 2 );
     }
 
     deanimate() {
