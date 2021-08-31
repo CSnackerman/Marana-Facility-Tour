@@ -8,6 +8,8 @@ class CircleButton3D {
 
         CircleButton3D.initStaticTexture();
 
+        this.name = name;
+
         this.material = new THREE.MeshBasicMaterial ({ 
             map: CircleButton3D.texture, 
             side: THREE.DoubleSide,
@@ -85,6 +87,7 @@ class CircleButton3D {
 
         
         // hover stuff
+        this.enabled = true;
         this.hoverInterval = null;
         this.isHovered = false;
         this.hoverMaterial = new THREE.MeshBasicMaterial ({ 
@@ -102,6 +105,10 @@ class CircleButton3D {
         this.hoverScale = 0;
 
         console.log (this);
+
+
+        // animation frame
+        this.frame = 0;
 
     }
 
@@ -131,7 +138,6 @@ class CircleButton3D {
 
     // animation stuff
     static animation_delay = 77; // ms
-    static frame = 0;
     static growRate = 17; // ms
 
     static initStaticTexture() {
@@ -159,11 +165,11 @@ class CircleButton3D {
             if (!this.isHovered) {
 
                 // advance frame
-                CircleButton3D.frame = (CircleButton3D.frame + 1) % 49;
+                this.frame = (this.frame + 1) % 49;
                 
                 // calculate row and column of texture atlas
-                let row = Math.floor (CircleButton3D.frame / 7);
-                let col = CircleButton3D.frame % 7;
+                let row = Math.floor (this.frame / 7);
+                let col = this.frame % 7;
 
                 // set the offset
                 this.mesh.material.map.offset.set (73.1428571429 * col, 1024 - 73.1428571429 * row);
@@ -173,9 +179,11 @@ class CircleButton3D {
 
     onHover() {
 
-        if (this.isHovered) {
+        if ( !this.enabled || this.isHovered ) {
             return;
         }
+
+        console.log ('hovering', this.name);
 
         this.hoverMesh.visible = true;
 
@@ -211,6 +219,20 @@ class CircleButton3D {
         if (this.isHovered) {
             showVideoPlayer (this.vidsrc)
         }
+    }
+
+    hide() {
+        this.enabled = false;
+        this.mesh.visible = false;
+        this.textMesh.visible = false;
+        this.hoverMesh.visible = false;
+    }
+
+    show() {
+        this.enabled = true;
+        this.mesh.visible = true;
+        this.textMesh.visible = true;
+        this.hoverMesh.visible = true;
     }
     
 }
