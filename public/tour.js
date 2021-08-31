@@ -171,7 +171,7 @@ const progressButtons = [
     progress2,
     progress3,
     progress4,
-    // progress5
+    progress5
 ]
 
 
@@ -270,7 +270,7 @@ sceneManager.initScene ( 1, [sphere1, button1, progressHome, progress1] );
 sceneManager.initScene ( 2, [sphere2, button1, progressBack, progress2] );
 sceneManager.initScene ( 3, [sphere3, button1, button5, progress3, progressBack] );
 sceneManager.initScene ( 4, [sphere4, button2, button3, button5, progress4, progressBack] );
-// sceneManager.initScene ( 5, [sphere5, button2, button3, button5, progress5, progressBack] );
+sceneManager.initScene ( 5, [sphere5, button2, button3, button5, progress5, progressBack] );
 
 // set intial scene
 sceneManager.setScene (1);

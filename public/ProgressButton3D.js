@@ -200,6 +200,22 @@ class ProgressButton3D {
             this.configProgress_4();
         }
 
+        else if (this.name === 'prog_five') {
+            this.configProgress_5();
+        }
+
+        else if (this.name === 'prog_six') {
+            this.configProgress_6();
+        }
+
+        else if (this.name === 'prog_seven') {
+            this.configProgress_7();
+        }
+
+        else if (this.name === 'prog_eight') {
+            this.configProgress_8();
+        }
+
 
         else if (this.name === 'prog_back') {
             this.configBack(sceneNum);
@@ -251,6 +267,58 @@ class ProgressButton3D {
         this.mesh.scale.set (1.000, 0.7, 1.000);
     }
 
+    configProgress_5() {
+        this.x = -0.003;
+        this.y = -0.346;
+        this.z = -0.861;
+
+        let rotx = toRad (133.63)
+        let roty = toRad (-2.53)
+        let rotz = toRad (170.01)
+        this.mesh.rotation.set (rotx, roty, rotz);
+
+        this.mesh.scale.set (1.000, 0.7, 1.000);
+    }
+
+    configProgress_6() {
+        this.x = -0.003;
+        this.y = -0.346;
+        this.z = -0.861;
+
+        let rotx = toRad (133.63)
+        let roty = toRad (-2.53)
+        let rotz = toRad (170.01)
+        this.mesh.rotation.set (rotx, roty, rotz);
+
+        this.mesh.scale.set (1.000, 0.7, 1.000);
+    }
+
+    configProgress_7() {
+        this.x = -0.003;
+        this.y = -0.346;
+        this.z = -0.861;
+
+        let rotx = toRad (133.63)
+        let roty = toRad (-2.53)
+        let rotz = toRad (170.01)
+        this.mesh.rotation.set (rotx, roty, rotz);
+
+        this.mesh.scale.set (1.000, 0.7, 1.000);
+    }
+
+    configProgress_8() {
+        this.x = -0.003;
+        this.y = -0.346;
+        this.z = -0.861;
+
+        let rotx = toRad (133.63)
+        let roty = toRad (-2.53)
+        let rotz = toRad (170.01)
+        this.mesh.rotation.set (rotx, roty, rotz);
+
+        this.mesh.scale.set (1.000, 0.7, 1.000);
+    }
+
     configBack(sceneNum) {
 
         if (sceneNum === 2) {
@@ -284,6 +352,70 @@ class ProgressButton3D {
         }
 
         if (sceneNum === 4) {
+            this.x = -0.738;
+            this.y = -0.257;
+            this.z = 0.271;
+
+            let rotx = toRad (84.29)
+            let roty = toRad (-18.48)
+            let rotz = toRad (92.45)
+            this.mesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (0.8, 0.8, 0.8);
+
+            return;
+
+        }
+
+        if (sceneNum === 5) {
+            this.x = 0.142;
+            this.y = -0.362;
+            this.z = 0.818;
+
+            let rotx = toRad (41.51)
+            let roty = toRad (0.77)
+            let rotz = toRad (1.48)
+            this.mesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (1.0, 0.8, 1.0);
+
+            return;
+
+        }
+
+        if (sceneNum === 6) {
+            this.x = -0.738;
+            this.y = -0.257;
+            this.z = 0.271;
+
+            let rotx = toRad (84.29)
+            let roty = toRad (-18.48)
+            let rotz = toRad (92.45)
+            this.mesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (0.8, 0.8, 0.8);
+
+            return;
+
+        }
+
+        if (sceneNum === 7) {
+            this.x = -0.738;
+            this.y = -0.257;
+            this.z = 0.271;
+
+            let rotx = toRad (84.29)
+            let roty = toRad (-18.48)
+            let rotz = toRad (92.45)
+            this.mesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (0.8, 0.8, 0.8);
+
+            return;
+
+        }
+
+        if (sceneNum === 8) {
             this.x = -0.738;
             this.y = -0.257;
             this.z = 0.271;
