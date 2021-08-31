@@ -17,37 +17,6 @@ canvas.style.position = 'fixed';
 
 document.body.appendChild ( canvas );
 
-// mouse
-let mouse = new THREE.Vector2();
-let pointer = new THREE.Vector2();
-let raycaster = new THREE.Raycaster();
-
-function handleIntersections () {
-    
-    raycaster.setFromCamera( mouse, camera );
-    const intersects = raycaster.intersectObjects ( intersectables );
-
-    if (intersects.length > 0) {
-
-        if (button1.mesh.uuid === intersects [0].object.uuid) {
-            button1.onHover();
-        }
-
-        else if (progressHome.mesh.uuid === intersects [0].object.uuid) {
-            progressHome.onHover(pointer);
-        }
-
-        else if (progress1.mesh.uuid === intersects [0].object.uuid) {
-            progress1.onHover(pointer);
-        }
-    }
-    else {
-        button1.noHover();
-        progress1.noHover();
-        progressHome.noHover();
-    }
-}
-
 // camera
 const camera = new THREE.PerspectiveCamera (
     75, window.innerWidth / window.innerHeight, 0.1, 1000 
@@ -63,9 +32,11 @@ controls.enableZoom = false;
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
-// scene spheres
+// loaders
 const texLoader = new THREE.TextureLoader();
 
+
+/* scene spheres */
 //scene 1
 const scene1_sphere = new THREE.SphereGeometry(1, 32, 32);
 const scene1_material = new THREE.MeshBasicMaterial( { 
@@ -82,6 +53,50 @@ const scene2_material = new THREE.MeshBasicMaterial( {
 } );
 const scene2_mesh = new THREE.Mesh( scene2_sphere, scene2_material );
 
+//scene 3
+const scene3_sphere = new THREE.SphereGeometry(1, 32, 32);
+const scene3_material = new THREE.MeshBasicMaterial( { 
+    map: texLoader.load ('images/scene3_v1.png'), 
+    side: THREE.BackSide
+} );
+const scene3_mesh = new THREE.Mesh( scene3_sphere, scene3_material );
+
+//scene 4
+const scene4_sphere = new THREE.SphereGeometry(1, 32, 32);
+const scene4_material = new THREE.MeshBasicMaterial( { 
+    map: texLoader.load ('images/scene4_v1.png'), 
+    side: THREE.BackSide
+} );
+const scene4_mesh = new THREE.Mesh( scene4_sphere, scene4_material );
+
+//scene 5
+const scene5_sphere = new THREE.SphereGeometry(1, 32, 32);
+const scene5_material = new THREE.MeshBasicMaterial( { 
+    map: texLoader.load ('images/scene5_v1.png'), 
+    side: THREE.BackSide
+} );
+const scene5_mesh = new THREE.Mesh( scene5_sphere, scene5_material );
+
+var swappingSphere = null;
+
+function setSwapSphere(currentScene) {
+
+    let sphere, mat;
+
+    switch (currentScene) {
+        case 'SCENE_1':
+            sphere = new THREE.SphereGeometry (1, 32, 32);
+            mat = new THREE.MeshBasicMaterial ( {
+                map: texLoader.load ('images/scene2.png'),
+                side: THREE.BackSide
+            });
+            break;
+    }
+
+    swappingSphere = new THREE.Mesh ( sphere, mat);
+} 
+
+
 
 // circle buttons
 const button1 = new CircleButton3D (
@@ -90,19 +105,65 @@ const button1 = new CircleButton3D (
     0, -Math.PI/2, 0,  // rotation
     0.1                 // size
 );
-button1.animate();
+
 
 const button2 = new CircleButton3D (
     'two',
-    0, 0, 0.1,
+    0,0,0,
     0, 0, 0,
-    0.2
+    0.1
 );
+
+const button3 = new CircleButton3D (
+    'three',
+    0, 0.4, 0.3,
+    0, 0, 0,
+    0.1
+);
+
+const button4 = new CircleButton3D (
+    'four',
+    0.3, 0, 0.6,
+    0, 0, 0,
+    0.1
+);
+
+const button5 = new CircleButton3D (
+    'five',
+    0, -0.2, 0.7,
+    0, 0, 0,
+    0.1
+);
+
+const buttonJourney = new CircleButton3D (
+    'journey',
+    -0.7, 0, 0.7,
+    0, 0, 0,
+    0.1
+);
+
+button1.animate();
 button2.animate();
+button3.animate();
+button4.animate();
+button5.animate();
+buttonJourney.animate();
+
+// button1.hide();
+button2.hide();
+button3.hide();
+button4.hide();
+button5.hide();
+buttonJourney.hide();
+
 
 var circleButtons = [ 
     button1,
-    button2
+    button2,
+    button3,
+    button4,
+    button5,
+    buttonJourney
 ];
 
 // progress buttons
@@ -127,18 +188,90 @@ var progressButtons = [
 
 
 // scene management
-scene.add( scene1_mesh );
+var CURRENT_SCENE = 'SCENE_1';
+
+scene.add( scene2_mesh );
 button1.addToScene (scene);
+button2.addToScene (scene);
+button3.addToScene (scene);
+button4.addToScene (scene);
+button5.addToScene (scene);
+buttonJourney.addToScene (scene);
 
 progressHome.addToScene (scene);
 progress1.addToScene (scene);
 
+setSwapSphere(CURRENT_SCENE);
 
-// collision detection
+
+/* collision detection */
+// mouse
+let mouse = new THREE.Vector2();
+let pointer = new THREE.Vector2();
+let raycaster = new THREE.Raycaster();
+
 let intersectables = [];
 intersectables.push (button1.mesh);
+intersectables.push (button2.mesh);
+intersectables.push (button3.mesh);
+intersectables.push (button4.mesh);
+intersectables.push (button5.mesh);
+intersectables.push (buttonJourney.mesh);
 intersectables.push (progressHome.mesh);
 intersectables.push (progress1.mesh);
+
+
+
+function handleIntersections () {
+    
+    raycaster.setFromCamera( mouse, camera );
+    const intersects = raycaster.intersectObjects ( intersectables );
+
+    if (intersects.length > 0) {
+
+        if (button1.mesh.uuid === intersects [0].object.uuid) {
+            button1.onHover();
+        }
+
+        else if (button2.mesh.uuid === intersects [0].object.uuid) {
+            button2.onHover(pointer);
+        }
+
+        else if (button3.mesh.uuid === intersects [0].object.uuid) {
+            button3.onHover(pointer);
+        }
+
+        else if (button4.mesh.uuid === intersects [0].object.uuid) {
+            button4.onHover(pointer);
+        }
+
+        else if (button5.mesh.uuid === intersects [0].object.uuid) {
+            button5.onHover(pointer);
+        }
+
+        else if (buttonJourney.mesh.uuid === intersects [0].object.uuid) {
+            buttonJourney.onHover(pointer);
+        }
+
+        else if (progressHome.mesh.uuid === intersects [0].object.uuid) {
+            progressHome.onHover(pointer);
+        }
+
+        else if (progress1.mesh.uuid === intersects [0].object.uuid) {
+            progress1.onHover(pointer);
+        }
+    }
+    else {
+        button1.noHover();
+        button2.noHover();
+        button3.noHover();
+        button4.noHover();
+        button5.noHover();
+        buttonJourney.noHover();
+        progress1.noHover();
+        progressHome.noHover();
+    }
+}
 
 
 
