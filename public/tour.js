@@ -84,7 +84,8 @@ function setSwapSphere(currentScene) {
     let sphere, mat;
 
     switch (currentScene) {
-        case 'SCENE_1':
+
+        case 1:
             sphere = new THREE.SphereGeometry (1, 32, 32);
             mat = new THREE.MeshBasicMaterial ( {
                 map: texLoader.load ('images/scene2.png'),
@@ -149,6 +150,7 @@ button4.animate();
 button5.animate();
 buttonJourney.animate();
 
+// debug
 // button1.hide();
 button2.hide();
 button3.hide();
@@ -157,7 +159,7 @@ button5.hide();
 buttonJourney.hide();
 
 
-var circleButtons = [ 
+const circleButtons = [ 
     button1,
     button2,
     button3,
@@ -171,56 +173,67 @@ const progressHome = new ProgressButton3D (
     'home',
     -0.85,0,0,
     0,Math.PI / 2,0,
-    0.4
+    0.4,
+    false
 )
 
-const progress1 = new ProgressButton3D(
+const progressBack = new ProgressButton3D (
+    'prog_back',
+    10,10,10,
+    0,Math.PI / 2,0,
+    0.4,
+    false
+)
+
+const progress1 = new ProgressButton3D (
     'prog_one',
     0.6, -0.3, 0,
     Math.PI /2, 0, -Math.PI / 2,
-    0.3
+    0.3,
+    true
 );
 
-var progressButtons = [ 
+const progress2 = new ProgressButton3D (
+    'prog_two',
+    10, 10, 10,
+    Math.PI /2, 0, -Math.PI / 2,
+    0.3,
+    true
+);
+
+
+
+const progressButtons = [
     progressHome, 
-    progress1
+    progressBack,
+    progress1,
+    progress2
 ]
 
+//debug
+// progressHome.hide();
+// progress1.hide();
 
-// scene management
-var CURRENT_SCENE = 'SCENE_1';
 
-scene.add( scene2_mesh );
-button1.addToScene (scene);
-button2.addToScene (scene);
-button3.addToScene (scene);
-button4.addToScene (scene);
-button5.addToScene (scene);
-buttonJourney.addToScene (scene);
 
-progressHome.addToScene (scene);
-progress1.addToScene (scene);
 
-setSwapSphere(CURRENT_SCENE);
+
 
 
 /* collision detection */
-// mouse
 let mouse = new THREE.Vector2();
 let pointer = new THREE.Vector2();
 let raycaster = new THREE.Raycaster();
 
 let intersectables = [];
-intersectables.push (button1.mesh);
-intersectables.push (button2.mesh);
-intersectables.push (button3.mesh);
-intersectables.push (button4.mesh);
-intersectables.push (button5.mesh);
-intersectables.push (buttonJourney.mesh);
-intersectables.push (progressHome.mesh);
-intersectables.push (progress1.mesh);
 
+circleButtons.forEach ( (button) => {
+    intersectables.push (button.mesh);
+})
 
+progressButtons.forEach ( (button) => {
+    intersectables.push (button.mesh);
+})
 
 function handleIntersections () {
     
@@ -257,8 +270,16 @@ function handleIntersections () {
             progressHome.onHover(pointer);
         }
 
+        else if (progressBack.mesh.uuid === intersects [0].object.uuid) {
+            progressBack.onHover(pointer);
+        }
+
         else if (progress1.mesh.uuid === intersects [0].object.uuid) {
             progress1.onHover(pointer);
+        }
+
+        else if (progress2.mesh.uuid === intersects [0].object.uuid) {
+            progress2.onHover(pointer);
         }
     }
     else {
@@ -269,10 +290,75 @@ function handleIntersections () {
         button5.noHover();
         buttonJourney.noHover();
         progress1.noHover();
+        progress2.noHover();
+        progressBack.noHover();
         progressHome.noHover();
     }
 }
 
+
+/* Scene Management */
+var CURRENT_SCENE = 1;
+
+scene.add ( scene1_mesh );
+scene.add ( scene2_mesh );
+
+button1.addToScene (scene);
+button2.addToScene (scene);
+button3.addToScene (scene);
+button4.addToScene (scene);
+button5.addToScene (scene);
+buttonJourney.addToScene (scene);
+
+progressHome.addToScene (scene);
+progress1.addToScene (scene);
+
+
+// scene objects
+const scene1 = [ button1, progressHome, progressBack ];
+const scene2 = [ button1, progress2, progressBack ];
+
+// switchScene (CURRENT_SCENE);
+
+function disableScene() {
+
+    if (CURRENT_SCENE === 1) { 
+        scene1.forEach ( (obj) => { obj.hide(); });
+        scene1_mesh.visible = false;
+    }
+
+    if (CURRENT_SCENE === 2) { 
+        scene2.forEach ( (obj) => { obj.hide(); });
+        scene2_mesh.visible = false;
+    }
+}
+
+function enableScene() {
+
+    if (CURRENT_SCENE === 1) { 
+        scene1.forEach ( (obj) => { obj.show(); });
+        scene1_mesh.visible = true;
+    }
+
+    if (CURRENT_SCENE === 2) { 
+        scene2.forEach ( (obj) => { obj.show(); });
+        scene2_mesh.visible = true;
+    }
+}
+
+function switchScene (s) {
+
+    // disable current scene
+    disableScene();
+
+    // update scene
+    CURRENT_SCENE = s;
+
+    // enable new scene
+    enableScene();
+
+    setSwapSphere(CURRENT_SCENE);
+}
 
 
 // ---------- Render Loop ----------------------------------------------------
@@ -303,9 +389,14 @@ window.addEventListener ('resize', () => {
 
 
 canvas.addEventListener ('click', (e) => {
+    
     circleButtons.forEach ( (button) => {
         button.onClick();
-    })
+    });
+
+    progressButtons.forEach ( (button) => {
+        button.onClick();
+    });
 });
 
 document.addEventListener ('mousemove', (e) => {
@@ -343,4 +434,4 @@ document.addEventListener ('wheel', (e) => {
 
 
 
-export { runTour };
+export { runTour, CURRENT_SCENE, switchScene };

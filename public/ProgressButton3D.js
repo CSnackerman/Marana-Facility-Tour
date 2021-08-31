@@ -1,10 +1,15 @@
 import * as THREE from 'https://cdn.skypack.dev/three@latest';
 
+import { toggleTour } from './config.js';
+import {CURRENT_SCENE, switchScene} from './tour.js';
+
 class ProgressButton3D {
 
-    constructor (name, x, y, z, rotx, roty, rotz, sz) {
+    constructor (name, x, y, z, rotx, roty, rotz, sz, forward) {
 
         this.name = name;
+
+        this.forward = forward;
 
         this.material = new THREE.MeshBasicMaterial ({ 
             map: ProgressButton3D.texture, 
@@ -17,16 +22,17 @@ class ProgressButton3D {
         this.mesh = new THREE.Mesh (this.geometry, this.material);
 
         // position and rotate
+        this.x = x;
+        this.y = y;
+        this.z = z;
         this.mesh.position.set (x, y, z);
         this.mesh.rotation.set (rotx, roty, rotz);
 
         // hover stuff
+        this.enabled = true;
+        this.isHovered = false;
         this.hoverSVGElement = document.getElementById ('progress_hover');
-
-        // set the hover image based on name
         this.hoverImageElement = document.getElementById ('progress_hover_image');
-        
-
     }
 
     static textureLoader = new THREE.TextureLoader();
@@ -45,7 +51,35 @@ class ProgressButton3D {
                 this.hoverImageElement.src = './images/start_button_hover.jpg';
                 break;
 
+            case 'prog_back':
+                this.hoverImageElement.src = './images/start_button_hover.jpg';
+                break;
+
             case 'prog_one': 
+                this.hoverImageElement.src = './images/start_button_hover.jpg';
+                break;
+
+            case 'prog_two': 
+                this.hoverImageElement.src = './images/start_button_hover.jpg';
+                break;
+
+            case 'prog_three': 
+                this.hoverImageElement.src = './images/start_button_hover.jpg';
+                break;
+
+            case 'prog_four': 
+                this.hoverImageElement.src = './images/start_button_hover.jpg';
+                break;
+            
+            case 'prog_five': 
+                this.hoverImageElement.src = './images/start_button_hover.jpg';
+                break;
+
+            case 'prog_six': 
+                this.hoverImageElement.src = './images/start_button_hover.jpg';
+                break;
+
+            case 'prog_seven': 
                 this.hoverImageElement.src = './images/start_button_hover.jpg';
                 break;
 
@@ -56,8 +90,14 @@ class ProgressButton3D {
 
     onHover(mousepos) {
 
+        if ( !this.enabled ) {
+            return;
+        }
+
         let x = Math.floor (mousepos.x);
         let y = Math.floor (mousepos.y);
+
+        this.isHovered = true;
 
         // svg
         this.hoverSVGElement.style.display = 'block';
@@ -72,12 +112,51 @@ class ProgressButton3D {
     }
 
     noHover() {
+        this.isHovered = false;
         this.hoverSVGElement.style.display = 'none';
         this.hoverImageElement.style.display ='none';
     }
 
     onClick() {
+
+        if (this.isHovered) {
+
+            // homeguard
+            if (this.name === 'home') {
+                console.log ('clicked home');
+                this.noHover();
+                return;
+            }
+
+            if (this.forward) {
+                switchScene (CURRENT_SCENE + 1);
+                console.log (CURRENT_SCENE);
+            }
+            else {
+                switchScene (CURRENT_SCENE - 1);
+                console.log (CURRENT_SCENE);
+            }
+            
+            this.noHover();
+        }
+    }
+
+    hide() {
+        this.enabled = false;
+        this.isHovered = false;
+        this.mesh.visible = false;
+
+        // teleport away
+        this.mesh.position.set (10, 10, 10);
         
+        console.log (this.name, 'hidden');
+    }
+
+    show() {
+        this.mesh.position.set (this.x, this.y, this.z);
+        this.enabled = true;
+        this.mesh.visible = true;
+        console.log (this.name, 'shown');
     }
 
 
