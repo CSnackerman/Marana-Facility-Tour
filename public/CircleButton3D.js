@@ -8,7 +8,7 @@ class CircleButton3D {
 
         CircleButton3D.initStaticTexture();
 
-        this.name = name;
+        this.name = 'button_' + name;
 
         this.material = new THREE.MeshBasicMaterial ({ 
             map: CircleButton3D.texture, 
@@ -19,6 +19,7 @@ class CircleButton3D {
         
         this.geometry = new THREE.PlaneGeometry (sz, sz);
         this.mesh = new THREE.Mesh (this.geometry, this.material);
+        this.mesh.name = this.name;
 
         // position and rotate
         this.mesh.position.set (x, y, z);
@@ -78,14 +79,15 @@ class CircleButton3D {
         });
         this.textSize = sz * 0.9;
         this.textGeometry = new THREE.PlaneGeometry (this.textSize, this.textSize);
-        this.textMesh = new THREE.Mesh (this.textGeometry, this.textMaterial);;
+        this.textMesh = new THREE.Mesh (this.textGeometry, this.textMaterial);
+        this.textMesh.name = this.name + '_text';
 
         // position and rotate text
         this.textMesh.position.set (x - 0.01, y, z);
         this.textMesh.rotation.set (rotx, roty, rotz);
 
         // hover stuff
-        this.enabled = false;
+        this.enabled = true;
         this.hoverInterval = null;
         this.isHovered = false;
         this.hoverMaterial = new THREE.MeshBasicMaterial ({ 
@@ -96,6 +98,7 @@ class CircleButton3D {
         });
         this.hoverGeometry = new THREE.PlaneGeometry (1, 1);
         this.hoverMesh = new THREE.Mesh (this.hoverGeometry, this.hoverMaterial);
+        this.hoverMesh.name = this.name + '_hover';
 
         // position and rotate hover plane
         this.hoverMesh.position.set (x - 0.02, y, z);
@@ -108,8 +111,6 @@ class CircleButton3D {
         this.frame = 0;
         
         // console.log (this);
-
-        this.hide();
     }
 
     static allInited = false;

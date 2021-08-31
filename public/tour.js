@@ -4,11 +4,11 @@ import { OrbitControls  } from 'https://cdn.skypack.dev/three@latest/examples/js
 import { tourToggle, toggleTour } from './config.js';
 
 import { SceneManager } from './SceneManager.js';
+import { Sphere } from './Sphere.js';
 import { CircleButton3D } from './CircleButton3D.js';
 import { ProgressButton3D } from './ProgressButton3D.js';
 
 // setup
-const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({antialias: true});
 const canvas = renderer.domElement;
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -32,74 +32,23 @@ controls.enableZoom = false;
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
-// loaders
-const texLoader = new THREE.TextureLoader();
 
+/* Spheres */
+const sphere1 = new Sphere ('one', 0);
+// const sphere2 = new Sphere ('two', 0);
+// const sphere3 = new Sphere ('three', 0);
+// const sphere4 = new Sphere ('four', 0);
+// const sphere5 = new Sphere ('five', 0);
+// const sphere6 = new Sphere ('six', 0);
+// const sphere7 = new Sphere ('seven', 0);
+// const sphere8 = new Sphere ('eight', 0);
 
-/* scene spheres */
-//scene 1
-const scene1_sphere = new THREE.SphereGeometry(1, 32, 32);
-const scene1_material = new THREE.MeshBasicMaterial( { 
-    map: texLoader.load ('images/scene1v7.png'), 
-    side: THREE.BackSide
-} );
-const scene1_mesh = new THREE.Mesh( scene1_sphere, scene1_material );
-
-//scene 2
-const scene2_sphere = new THREE.SphereGeometry(1, 32, 32);
-const scene2_material = new THREE.MeshBasicMaterial( { 
-    map: texLoader.load ('images/scene2.png'), 
-    side: THREE.BackSide
-} );
-const scene2_mesh = new THREE.Mesh( scene2_sphere, scene2_material );
-
-//scene 3
-const scene3_sphere = new THREE.SphereGeometry(1, 32, 32);
-const scene3_material = new THREE.MeshBasicMaterial( { 
-    map: texLoader.load ('images/scene3_v1.png'), 
-    side: THREE.BackSide
-} );
-const scene3_mesh = new THREE.Mesh( scene3_sphere, scene3_material );
-
-//scene 4
-const scene4_sphere = new THREE.SphereGeometry(1, 32, 32);
-const scene4_material = new THREE.MeshBasicMaterial( { 
-    map: texLoader.load ('images/scene4_v1.png'), 
-    side: THREE.BackSide
-} );
-const scene4_mesh = new THREE.Mesh( scene4_sphere, scene4_material );
-
-//scene 5
-const scene5_sphere = new THREE.SphereGeometry(1, 32, 32);
-const scene5_material = new THREE.MeshBasicMaterial( { 
-    map: texLoader.load ('images/scene5_v1.png'), 
-    side: THREE.BackSide
-} );
-const scene5_mesh = new THREE.Mesh( scene5_sphere, scene5_material );
 
 var swappingSphere = null;
 
-function setSwapSphere(currentScene) {
 
-    let sphere, mat;
+/* Circle Buttons */
 
-    switch (currentScene) {
-
-        case 1:
-            sphere = new THREE.SphereGeometry (1, 32, 32);
-            mat = new THREE.MeshBasicMaterial ( {
-                map: texLoader.load ('images/scene2.png'),
-                side: THREE.BackSide
-            });
-            break;
-    }
-
-    swappingSphere = new THREE.Mesh ( sphere, mat);
-} 
-
-
-
-// circle buttons
 const button1 = new CircleButton3D (
     'one',          // name
     0.85, 0, 0.07,  // position
@@ -160,7 +109,8 @@ const circleButtons = [
     // buttonJourney
 ];
 
-// progress buttons
+/* Progress Buttons */
+
 const progressHome = new ProgressButton3D (
     'home',
     -0.85,0,0,
@@ -230,71 +180,29 @@ function handleIntersections () {
             button1.onHover();
         }
 
-        // else if (button2.mesh.uuid === intersects [0].object.uuid) {
-        //     button2.onHover(pointer);
-        // }
-
-        // else if (button3.mesh.uuid === intersects [0].object.uuid) {
-        //     button3.onHover(pointer);
-        // }
-
-        // else if (button4.mesh.uuid === intersects [0].object.uuid) {
-        //     button4.onHover(pointer);
-        // }
-
-        // else if (button5.mesh.uuid === intersects [0].object.uuid) {
-        //     button5.onHover(pointer);
-        // }
-
-        // else if (buttonJourney.mesh.uuid === intersects [0].object.uuid) {
-        //     buttonJourney.onHover(pointer);
-        // }
 
         else if (progressHome.mesh.uuid === intersects [0].object.uuid) {
             progressHome.onHover(pointer);
         }
 
-        // else if (progressBack.mesh.uuid === intersects [0].object.uuid) {
-        //     progressBack.onHover(pointer);
-        // }
-
         else if (progress1.mesh.uuid === intersects [0].object.uuid) {
             progress1.onHover(pointer);
         }
-
-        // else if (progress2.mesh.uuid === intersects [0].object.uuid) {
-        //     progress2.onHover(pointer);
-        // }
     }
     else {
 
         button1.noHover();
-        // button2.noHover();
-        // button3.noHover();
-        // button4.noHover();
-        // button5.noHover();
-        // buttonJourney.noHover();
 
         progressHome.noHover();
-        // progressBack.noHover();
         progress1.noHover();
-        // progress2.noHover();
-
     }
 }
 
 
 /* Scene Management */
+const sceneManager = new SceneManager();
+sceneManager.initScene (1, [sphere1, button1, progressHome, progress1]);
 
-scene.add ( scene1_mesh );
-
-button1.addToScene (scene);
-button1.show();
-
-progressHome.addToScene (scene);
-progressHome.show();
-progress1.addToScene (scene);
-progress1.show();
 
 // ---------- Render Loop ----------------------------------------------------
 
@@ -303,8 +211,8 @@ const runTour = function () {
     controls.update();
 
     handleIntersections();
-
-    renderer.render( scene, camera );
+    
+    renderer.render( sceneManager.currentScene, camera );
 
     if (tourToggle === 'home') {
         return

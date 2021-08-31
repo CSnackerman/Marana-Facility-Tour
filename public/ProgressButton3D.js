@@ -19,6 +19,7 @@ class ProgressButton3D {
         
         this.geometry = new THREE.PlaneGeometry (sz, sz);
         this.mesh = new THREE.Mesh (this.geometry, this.material);
+        this.mesh.name = this.name;
 
         // position and rotate
         this.x = x;
@@ -28,12 +29,10 @@ class ProgressButton3D {
         this.mesh.rotation.set (rotx, roty, rotz);
 
         // hover stuff
-        this.enabled = false;
+        this.enabled = true;
         this.isHovered = false;
         this.hoverSVGElement = document.getElementById ('progress_hover');
         this.hoverImageElement = document.getElementById ('progress_hover_image');
-
-        this.hide();
     }
 
     static textureLoader = new THREE.TextureLoader();
