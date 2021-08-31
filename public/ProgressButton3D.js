@@ -197,7 +197,7 @@ class ProgressButton3D {
         }
 
         else if (this.name === 'prog_four') {
-            this.configProgress_3();
+            this.configProgress_4();
         }
 
 
@@ -238,6 +238,19 @@ class ProgressButton3D {
         this.mesh.rotation.set (rotx, roty, rotz);
     }
 
+    configProgress_4() {
+        this.x = -0.003;
+        this.y = -0.346;
+        this.z = -0.861;
+
+        let rotx = toRad (133.63)
+        let roty = toRad (-2.53)
+        let rotz = toRad (170.01)
+        this.mesh.rotation.set (rotx, roty, rotz);
+
+        this.mesh.scale.set (1.000, 0.7, 1.000);
+    }
+
     configBack(sceneNum) {
 
         if (sceneNum === 2) {
@@ -251,6 +264,38 @@ class ProgressButton3D {
             this.mesh.rotation.set (rotx, roty, rotz);
 
             this.mesh.scale.set (1.000, 0.623, 1.000);
+
+            return;
+        }
+
+        if (sceneNum === 3) {
+            this.x = -0.832;
+            this.y = -0.352;
+            this.z = 0.033;
+
+            let rotx = toRad (94.57)
+            let roty = toRad (-43.50)
+            let rotz = toRad (89.29)
+            this.mesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (1.000, 0.623, 1.000);
+
+            return;
+        }
+
+        if (sceneNum === 4) {
+            this.x = -0.738;
+            this.y = -0.257;
+            this.z = 0.271;
+
+            let rotx = toRad (84.29)
+            let roty = toRad (-18.48)
+            let rotz = toRad (92.45)
+            this.mesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (0.8, 0.8, 0.8);
+
+            return;
 
         }
     }

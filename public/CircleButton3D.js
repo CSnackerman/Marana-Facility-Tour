@@ -266,6 +266,16 @@ class CircleButton3D {
             return;
         }
 
+        if (this.name === 'button_two') {
+            this.configButton_2 (sceneNum);
+            return;
+        }
+
+        if (this.name === 'button_three') {
+            this.configButton_3 (sceneNum);
+            return;
+        }
+
         if (this.name === 'button_five') {
             this.configButton_5 (sceneNum);
             return;
@@ -316,6 +326,8 @@ class CircleButton3D {
             return;
         }
 
+        
+
         if (sceneNum === 3) {
 
             this.mesh.position.set (-0.930, 0.011, 0.225);
@@ -335,6 +347,59 @@ class CircleButton3D {
             this.hoverMesh.scale.set (0.1, 0.1, 0.1);
 
             this.maxHoverScale = this.baseHoverScale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+    }
+
+    configButton_2 (sceneNum) {
+
+        if (sceneNum === 4) {
+
+            this.mesh.position.set (0.477,0.011,-0.788);
+            this.textMesh.position.set (0.444,0.011,-0.742);
+            this.hoverMesh.position.set (0.416,0.011,-0.703);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (-75.40);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (2,2,2);
+            this.textMesh.scale.set (2,2,2);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = this.baseHoverScale * 2;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+    }
+
+    configButton_3 (sceneNum) {
+
+        if (sceneNum === 4) {
+            this.mesh.position.set (-0.247,0.011,-0.880);
+            this.textMesh.position.set (-0.233,0.011,-0.823);
+            this.hoverMesh.position.set (-0.200,0.011,-0.770);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (71.87);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (1.700,1.700,1.700);
+            this.textMesh.scale.set (2,2,2);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = this.baseHoverScale * 2;
             this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
 
             return;
@@ -363,6 +428,30 @@ class CircleButton3D {
             this.hoverMesh.scale.set (0.1, 0.1, 0.1);
 
             this.maxHoverScale = 0.1;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+            return;
+        }
+
+        if (sceneNum === 4) {
+
+            this.mesh.position.set (0.782,0.011,0.113);
+            this.textMesh.position.set (0.769,0.011,0.112);
+            this.hoverMesh.position.set (0.766,0.011,0.105);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (-75.40);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 2;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = this.baseHoverScale * 2;
             this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
             return;
         }

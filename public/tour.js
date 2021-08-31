@@ -171,7 +171,7 @@ const progressButtons = [
     progress2,
     progress3,
     progress4,
-    progress5
+    // progress5
 ]
 
 
@@ -194,7 +194,7 @@ const objects8 = [];
 const intersectables1 = [button1.mesh, progressHome.mesh, progress1.mesh];
 const intersectables2 = [button1.mesh, progress2.mesh, progressBack.mesh];
 const intersectables3 = [button1.mesh, button5.mesh, progress3.mesh, progressBack.mesh];
-const intersectables4 = [button2.mesh, button3.mesh, button5.mesh, progress5.mesh, progressBack.mesh];
+const intersectables4 = [button2.mesh, button3.mesh, button5.mesh, progress4.mesh, progressBack.mesh];
 const intersectables5 = [button2.mesh, button3.mesh, button5.mesh, progress5.mesh, progressBack.mesh];
 const intersectables6 = [];
 const intersectables7 = [];
@@ -229,7 +229,7 @@ function handleIntersections () {
     const intersects = raycaster.intersectObjects ( intersectables );
 
     // is intersection
-    if (intersects.length > 0) {
+    if (intersects.length > 0) {EvalError
         
         canvas.style.cursor = 'pointer';
 
@@ -270,7 +270,7 @@ sceneManager.initScene ( 1, [sphere1, button1, progressHome, progress1] );
 sceneManager.initScene ( 2, [sphere2, button1, progressBack, progress2] );
 sceneManager.initScene ( 3, [sphere3, button1, button5, progress3, progressBack] );
 sceneManager.initScene ( 4, [sphere4, button2, button3, button5, progress4, progressBack] );
-sceneManager.initScene ( 5, [sphere5, button2, button3, button5, progress5, progressBack] );
+// sceneManager.initScene ( 5, [sphere5, button2, button3, button5, progress5, progressBack] );
 
 // set intial scene
 sceneManager.setScene (1);
@@ -304,14 +304,6 @@ window.addEventListener ('resize', () => {
 
 
 canvas.addEventListener ('click', (e) => {
-    
-    // circleButtons.forEach ( (button) => {
-    //     button.onClick();
-    // });
-
-    // progressButtons.forEach ( (button) => {
-    //     button.onClick();
-    // });
 });
 
 canvas.addEventListener ('mousedown', (e) => {
