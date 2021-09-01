@@ -39,9 +39,9 @@ const sphere2 = new Sphere ('two', 0);
 const sphere3 = new Sphere ('three', 0);
 const sphere4 = new Sphere ('four', 0);
 const sphere5 = new Sphere ('five', 0);
-// const sphere6 = new Sphere ('six', 0);
-// const sphere7 = new Sphere ('seven', 0);
-// const sphere8 = new Sphere ('eight', 0);
+const sphere6 = new Sphere ('six', 0);
+const sphere7 = new Sphere ('seven', 0);
+const sphere8 = new Sphere ('eight', 0);
 
 
 const swappingSphere = null;
@@ -71,12 +71,12 @@ const button3 = new CircleButton3D (
     0.1
 );
 
-// const button4 = new CircleButton3D (
-//     'four',
-//     0.3, 0, 0.6,
-//     0, 0, 0,
-//     0.1
-// );
+const button4 = new CircleButton3D (
+    'four',
+    0.3, 0, 0.6,
+    0, 0, 0,
+    0.1
+);
 
 const button5 = new CircleButton3D (
     'five',
@@ -85,12 +85,12 @@ const button5 = new CircleButton3D (
     0.1
 );
 
-// const buttonJourney = new CircleButton3D (
-//     'journey',
-//     -0.7, 0, 0.7,
-//     0, 0, 0,
-//     0.1
-// );
+const buttonJourney = new CircleButton3D (
+    'journey',
+    -0.7, 0, 0.7,
+    0, 0, 0,
+    0.1
+);
 
 
 const circleButtons = [ 
@@ -98,9 +98,9 @@ const circleButtons = [
     button1,
     button2,
     button3,
-    // button4,
-    button5
-    // buttonJourney
+    button4,
+    button5,
+    buttonJourney
 ];
 
 /* Progress Buttons */
@@ -161,6 +161,22 @@ const progress5 = new ProgressButton3D (
     true
 );
 
+const progress6 = new ProgressButton3D (
+    'prog_six',
+    0,0,0,
+    Math.PI /2, 0, -Math.PI / 2,
+    0.3,
+    true
+);
+
+const progress7 = new ProgressButton3D (
+    'prog_seven',
+    0,0,0,
+    Math.PI /2, 0, -Math.PI / 2,
+    0.3,
+    true
+);
+
 
 
 const progressButtons = [
@@ -171,7 +187,9 @@ const progressButtons = [
     progress2,
     progress3,
     progress4,
-    progress5
+    progress5,
+    progress6,
+    progress7
 ]
 
 
@@ -182,23 +200,24 @@ let pointer = new THREE.Vector2();
 let raycaster = new THREE.Raycaster();
 var clickHeld = false;
 
+
 const objects1 = [button1, progressHome, progress1];
 const objects2 = [button1, progress2, progressBack];
 const objects3 = [button1, button5, progress3, progressBack];
 const objects4 = [button2, button3, button5, progress4, progressBack];
 const objects5 = [button2, button3, button5, progress5, progressBack];
-const objects6 = [];
-const objects7 = [];
-const objects8 = [];
+const objects6 = [button2, button3, button4, buttonJourney, progress6, progressBack];
+const objects7 = [button3, button4, buttonJourney, progress7, progressBack];
+const objects8 = [button4, buttonJourney, progressBack];
 
 const intersectables1 = [button1.mesh, progressHome.mesh, progress1.mesh];
 const intersectables2 = [button1.mesh, progress2.mesh, progressBack.mesh];
 const intersectables3 = [button1.mesh, button5.mesh, progress3.mesh, progressBack.mesh];
 const intersectables4 = [button2.mesh, button3.mesh, button5.mesh, progress4.mesh, progressBack.mesh];
 const intersectables5 = [button2.mesh, button3.mesh, button5.mesh, progress5.mesh, progressBack.mesh];
-const intersectables6 = [];
-const intersectables7 = [];
-const intersectables8 = [];
+const intersectables6 = [button2.mesh, button3.mesh, button4.mesh, buttonJourney.mesh, progress6.mesh, progressBack.mesh];
+const intersectables7 = [button3.mesh, button4.mesh, buttonJourney.mesh, progress7.mesh, progressBack.mesh];
+const intersectables8 = [button4.mesh, buttonJourney.mesh, progressBack.mesh];
 
 function handleIntersections () {
     
@@ -271,9 +290,14 @@ sceneManager.initScene ( 2, [sphere2, button1, progressBack, progress2] );
 sceneManager.initScene ( 3, [sphere3, button1, button5, progress3, progressBack] );
 sceneManager.initScene ( 4, [sphere4, button2, button3, button5, progress4, progressBack] );
 sceneManager.initScene ( 5, [sphere5, button2, button3, button5, progress5, progressBack] );
+sceneManager.initScene ( 6, [sphere6, button2, button3, button4, buttonJourney, progress6, progressBack] );
+sceneManager.initScene ( 7, [sphere7, button3, button4, buttonJourney, progress7, progressBack] );
+sceneManager.initScene ( 8, [sphere8, button4, buttonJourney, progressBack] );
 
 // set intial scene
 sceneManager.setScene (1);
+
+console.log (sceneManager);
 
 
 // ---------- Render Loop ----------------------------------------------------

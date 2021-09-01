@@ -296,8 +296,8 @@ class CircleButton3D {
             return;
         }
 
-        if (this.name === 'button_five') {
-            this.configButton_6 (sceneNum);
+        if (this.name === 'button_journey') {
+            this.configButton_Journey (sceneNum);
             return;
         }
 
@@ -422,6 +422,30 @@ class CircleButton3D {
 
             return;
         }
+
+        if (sceneNum === 6) {
+
+            this.mesh.position.set (0.503,0.011,0.584);
+            this.textMesh.position.set (0.497,0.011,0.577);
+            this.hoverMesh.position.set (0.483,0.011,0.571);
+
+            let rotx = toRad (-180.00);
+            let roty = toRad (-88.31);
+            let rotz = toRad (-180.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            this.mesh.scale.set (2,2,2);
+            this.textMesh.scale.set (2,2,2);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = this.baseHoverScale * 2;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
     }
 
     configButton_3 (sceneNum) {
@@ -463,6 +487,131 @@ class CircleButton3D {
             this.hoverMesh.rotation.set (rotx, roty, rotz);
 
             let scale = 1.5;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = 0.1 * scale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+
+        if (sceneNum === 6) {
+
+            this.mesh.position.set (-0.831,0.011,-0.165);
+            this.textMesh.position.set (-0.827,0.011,-0.164);
+            this.hoverMesh.position.set (-0.812,0.011,-0.148);
+
+            let rotx = toRad (-180.00);
+            let roty = toRad (79.45);
+            let rotz = toRad (180.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 2;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = this.baseHoverScale * scale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+
+        if (sceneNum === 7) {
+
+            this.mesh.position.set (-0.376,0.052,0.850);
+            this.textMesh.position.set (-0.375,0.052,0.849);
+            this.hoverMesh.position.set (-0.374,0.052,0.848);
+
+            let rotx = toRad (-180.00);
+            let roty = toRad (38.00);
+            let rotz = toRad (180.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 1;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = this.baseHoverScale * scale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+    }
+
+    configButton_4 (sceneNum) {
+
+        if (sceneNum === 6) {
+            this.mesh.position.set (0.164,0.052,-0.960);
+            this.textMesh.position.set (0.164,0.051,-0.957);
+            this.hoverMesh.position.set (0.163,0.051,-0.945);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (-8.44);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 0.9;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = 0.1 * scale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+
+        if (sceneNum === 7) {
+            this.mesh.position.set (0.382,0.052,-0.795);
+            this.textMesh.position.set (0.380,0.051,-0.791);
+            this.hoverMesh.position.set (0.379,0.051,-0.781);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (-8.44);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 2;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = 0.1 * scale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+
+        if (sceneNum === 8) {
+            this.mesh.position.set (0.489,0.052,-0.084);
+            this.textMesh.position.set (0.484,0.051,-0.084);
+            this.hoverMesh.position.set (0.482,0.051,-0.084);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (-90);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 1.7;
             this.mesh.scale.set (scale, scale, scale);
             this.textMesh.scale.set (scale, scale, scale);
             this.hoverMesh.scale.set (0.1, 0.1, 0.1);
@@ -545,6 +694,80 @@ class CircleButton3D {
 
             this.maxHoverScale = this.baseHoverScale * 2;
             this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+            return;
+        }
+    }
+
+    configButton_Journey (sceneNum) {
+        if (sceneNum === 6) {
+            this.mesh.position.set (0.061,0.136,-0.960);
+            this.textMesh.position.set (0.061,0.135,-0.957);
+            this.hoverMesh.position.set (0.059,0.131,-0.946);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (-8.44);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 0.9;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = 0.1 * scale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+
+        if (sceneNum === 7) {
+            this.mesh.position.set (0.061,0.136,-0.960);
+            this.textMesh.position.set (0.061,0.135,-0.957);
+            this.hoverMesh.position.set (0.059,0.131,-0.946);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (-8.44);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 1.1;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = 0.1 * scale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
+            return;
+        }
+
+        if (sceneNum === 8) {
+            this.mesh.position.set (0.061,0.136,-0.95);
+            this.textMesh.position.set (0.061,0.135,-0.947);
+            this.hoverMesh.position.set (0.059,0.131,-0.944);
+
+            let rotx = toRad (0.00);
+            let roty = toRad (-8.44);
+            let rotz = toRad (0.00);
+
+            this.mesh.rotation.set (rotx, roty, rotz);
+            this.textMesh.rotation.set (rotx, roty, rotz);
+            this.hoverMesh.rotation.set (rotx, roty, rotz);
+
+            let scale = 3;
+            this.mesh.scale.set (scale, scale, scale);
+            this.textMesh.scale.set (scale, scale, scale);
+            this.hoverMesh.scale.set (0.1, 0.1, 0.1);
+
+            this.maxHoverScale = 0.1 * scale;
+            this.scaleRate = this.baseScaleRate * this.maxHoverScale / this.baseHoverScale;
+
             return;
         }
     }

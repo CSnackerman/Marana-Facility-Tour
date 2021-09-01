@@ -14,7 +14,7 @@ class Sphere {
         else if (name === 'four') { this.textureSrc = 'images/scene4_v1.png'; }
         else if (name === 'five') { this.textureSrc = 'images/scene5_v1.png'; }
         else if (name === 'six') { this.textureSrc = 'images/scene6_v1.png'; }
-        else if (name === 'seven') { this.textureSrc = 'images/scene7_v1.png'; }
+        else if (name === 'seven') { this.textureSrc = 'images/scene7v1.png'; }
         else if (name === 'eight') { this.textureSrc = 'images/scene8_v1.png'; }
         else {
             console.error ('invalid Sphere name');
