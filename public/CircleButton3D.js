@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdn.skypack.dev/three@latest';
+import * as THREE from 'https://unpkg.com/three@latest/build/three.module.js';
 
 import {showVideoPlayer} from './videoplayer.js';
 

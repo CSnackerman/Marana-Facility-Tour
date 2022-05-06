@@ -17,7 +17,17 @@
 
 
 <!-- frontloader -->
-<img src="./images/marana_birds_eye.png" id="birds_eye"/>
+<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@latest/build/three.module.js"
+    }
+  }
+</script>
+
+<img src="./images/marana_birds_eye.png" id="birds_eye" alt="bg"/>
 
 <svg id="progress_hover" width="150" height="185" style="position:fixed; z-index:97; display:none">
     <rect stroke-width="1.9" stroke="#3ea3ce" fill="#0d2b4a99" x="0" y="0" width="100%" height="100%" rx="11" ry="11" />
@@ -27,8 +37,7 @@
     src="" 
     alt="progress button hover image" 
     style="width:140px; height:150px; position:fixed; display:none; z-index:98"
->
-</img>
+/>
 
 
 <!-- scripts -->
@@ -64,17 +73,17 @@
     <div class="navbox-container" id="navbox_container">
 
         <a class="navbox-topper" id="navbox_topper" href=".">
-            <img src="./images/menutitle-bayer.png" , alt="Bayer">
+            <img src="./images/menutitle-bayer.png" alt="Bayer">
         </a>
 
-        <button type="button" id="overview_button"          class="navbox-button" aria-label="Overview">OVERVIEW</button>
-        <button type="button" id="howitwasbuilt_button"     class="navbox-button" aria-label="Overview">HOW IT WAS BUILT</button>
-        <button type="button" id="chipping_button"          class="navbox-button" aria-label="Overview">CHIPPING</button>
-        <button type="button" id="seeding_button"           class="navbox-button" aria-label="Overview">SEEDING</button>
-        <button type="button" id="germination_button"       class="navbox-button" aria-label="Overview">GERMINATION</button>
-        <button type="button" id="plantselection_button"    class="navbox-button" aria-label="Overview">PLANT SELECTION</button>
-        <button type="button" id="pollination_button"       class="navbox-button" aria-label="Overview">POLLINATION</button>
-        <button type="button" id="tour360_button"           class="navbox-button" aria-label="Overview">360° TOUR</button>
+        <button type="button" id="overview_button"       class="navbox-button" aria-label="Overview">OVERVIEW</button>
+        <button type="button" id="howitwasbuilt_button"  class="navbox-button" aria-label="Overview">HOW IT WAS BUILT</button>
+        <button type="button" id="chipping_button"       class="navbox-button" aria-label="Overview">CHIPPING</button>
+        <button type="button" id="seeding_button"        class="navbox-button" aria-label="Overview">SEEDING</button>
+        <button type="button" id="germination_button"    class="navbox-button" aria-label="Overview">GERMINATION</button>
+        <button type="button" id="plantselection_button" class="navbox-button" aria-label="Overview">PLANT SELECTION</button>
+        <button type="button" id="pollination_button"    class="navbox-button" aria-label="Overview">POLLINATION</button>
+        <button type="button" id="tour360_button"        class="navbox-button" aria-label="Overview">360° TOUR</button>
 
     </div>
 

@@ -1,4 +1,4 @@
-const express = require('express')
+import express from 'express'
 
 const app = express()
 
@@ -13,8 +13,5 @@ app.get ('/', (req, res) => {
 app.use ('/tour', express.static ('public'))
 
 app.listen (port, () => {
-    console.log(`Tour app running on -> http://localhost:${port}`)
+    console.log(`Tour app running on port: ${port}`)
 })
-
-
-//oh no

@@ -1,6 +1,5 @@
-import * as THREE from 'https://cdn.skypack.dev/three@latest';
-import { OrbitControls  } from 'https://cdn.skypack.dev/three@latest/examples/jsm/controls/OrbitControls.js'
-
+import * as THREE from 'https://unpkg.com/three@latest/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@latest/examples/jsm/controls/OrbitControls.js'
 import { tourToggle, toggleTour } from './config.js';
 
 import { SceneManager } from './SceneManager.js';

@@ -1,11 +1,8 @@
 import { WIDTH, HEIGHT } from "./config.js";
-import { tourToggle, toggleTour } from "./config.js";
-
+import { tourToggle } from "./config.js";
 import { CircleButton2D } from "./CircleButton2D.js";
-
 import { StartButton } from "./StartButton.js";
-
-import {runTour} from "./tour.js"
+import { runTour } from "./tour.js"
 
 
 // boilerplate

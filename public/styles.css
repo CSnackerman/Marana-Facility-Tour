@@ -20,7 +20,6 @@
     src: url('./fonts/Lobster-Regular.ttf');
 }
 
-
 /* RESET */
 html, body {
     margin: 0;
@@ -29,14 +28,10 @@ html, body {
     background-color: var(--main-bg-color); 
 }
 
-
-
 /* don't display because of frontloader */
 #birds_eye {
     display:none;
 }
-
-
 
 /* WELCOMER */
 #welcome_bg {
@@ -53,7 +48,6 @@ html, body {
     z-index: 100;
 }
 
-
 #welcome_image {
     display: block;
     position: fixed; 
@@ -67,10 +61,10 @@ html, body {
 
     z-index: 101;
 }
+
 #welcome_image::selection {
     background-color: transparent;
 }
-
 
 #begin_button {
     display: block;
@@ -101,7 +95,6 @@ html, body {
     background-image: url('./images/begin-hover.png');
 }
 
-
 /* NAVBOX */
 .navbox-container {
     position: fixed;
@@ -120,8 +113,6 @@ html, body {
 
 }
 
-
-
 .navbox-topper {
     display: block;
     width: var(--navbox-width);
@@ -132,8 +123,6 @@ html, body {
     background-color: transparent;
 }
 
-
-
 .navbox-topper img {
     display: block;
     width: 100%;
@@ -143,7 +132,6 @@ html, body {
 .navbox-topper img::selection {
     background-color: transparent;
 }
-
 
 .navbox-button {
     display: block;
@@ -176,8 +164,6 @@ html, body {
     background-color: var(--navbox-button-highlight-color);
 }
 
-
-
 /* LOGO FOOTER */
 .logo-button {
     display: block;
@@ -203,8 +189,6 @@ html, body {
     z-index: 1000;
 }
 
-
-
 /* VIDEO PLAYER */
 #video_container {
     z-index: 200;
@@ -219,8 +203,6 @@ html, body {
     
     z-index: 200;
 }
-
-
 
 /* CANVAS */
 #c {
@@ -237,5 +219,3 @@ html, body {
 
     /* border: solid red 1px; */
 }
-
-  

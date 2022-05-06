@@ -1,5 +1,4 @@
 import { showVideoPlayer } from "./videoplayer.js";
-import { WIDTH, HEIGHT } from "./config.js";
 import { R_MODE } from "./config.js";
 
 // navbox container

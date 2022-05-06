@@ -1,6 +1,4 @@
-import * as THREE from 'https://cdn.skypack.dev/three@latest';
-
-import { toggleTour } from './config.js';
+import * as THREE from 'https://unpkg.com/three@latest/build/three.module.js';
 
 import {sceneManager} from './tour.js';
 
