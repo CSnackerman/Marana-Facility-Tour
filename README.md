@@ -2,4 +2,4 @@
 
 ### Go To
 
-<https://col-test-server.herokuapp.com>
+<https://marana-facility.web.app/>
